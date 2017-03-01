@@ -96,6 +96,7 @@ input.error:focus {
 
 #refresh-body-id {
   position: relative;
+  min-height: 300px;
 }
 
 #refresh-body-id #refresh-loading-id {

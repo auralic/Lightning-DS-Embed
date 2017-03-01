@@ -73,7 +73,13 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 	this.deviceInfo = function(url){
 		var _def = $q.defer();
 		 $http.get(url, {timeout : 2000}).then(function(response){
-		 	_def.resolve(ohnetParser.parser(response.data))
+		 	var _data = ohnetParser.parser(response.data);
+		 	$log.debug('devie is %o', _data);
+		 	if(angular.isUndefined(_data.root) || angular.isUndefined(_data.root.device)){
+		 		_def.reject(response);	
+		 	}else{
+		 		_def.resolve(_data);
+		 	}
 		 }).catch(function(m){
 		 	_def.reject(m);
 		 });
@@ -396,6 +402,7 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 				device : _dev,
 				serviceName : serviceName
 			};
+			ohnetObservable.broadcast('selected-device', udn);
 			// 设置订阅
 			ohnetSubscription.set(udn, _dev.host, serviceName, _dev.port);
 			ohnetDevice.selected(udn);
@@ -468,7 +475,7 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 		}
 		_isOffline = isOffline;
 		if(_isOffline){
-			ohnetTip.tip('general.tip_error_title', 'general.device_offline', {udn : udn});
+			ohnetTip.tip('general.tip_error_title', 'general.device_offline', {udn : (ohnetSubscription.info() ? ohnetSubscription.info().udn : '')});
 			_startCheckIP();
 		}
 		// 如果是在线状态，则设置 pending 为 false

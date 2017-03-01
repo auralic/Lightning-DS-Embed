@@ -3,6 +3,7 @@ app.controller('UiConfigCtrl', function($scope, $compile, $log, ohnetRequester, 
     // 初始化一个延迟对象
     var backDef = $q.defer();
     $('#refresh-loading-mask-id,#refresh-loading-id').finish().show();
+    $('#ui-comment-container-id').hide();
     // 选中
     var _selected = function(){
         // 先切换
@@ -15,7 +16,6 @@ app.controller('UiConfigCtrl', function($scope, $compile, $log, ohnetRequester, 
                 // 动态编译
                 $compile(element.contents())($scope);
                 backDef.resolve();
-                $('#refresh-loading-mask-id,#refresh-loading-id').fadeOut(500);
             }).catch(function(){
                 _refresh();
             });
@@ -27,6 +27,13 @@ app.controller('UiConfigCtrl', function($scope, $compile, $log, ohnetRequester, 
             _selected();
         });
     };
+    ohnetObservable.remove('selected-device');
+    ohnetObservable.add('selected-device', function(){
+        window.setTimeout(function(){
+            $('#refresh-loading-mask-id,#refresh-loading-id').fadeOut(500);
+            $('#ui-comment-container-id').fadeOut(500);
+        }, 100);
+    });
     //先选中一个
     _selected();
     return backDef.promise;
