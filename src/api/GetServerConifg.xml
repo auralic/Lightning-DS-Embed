@@ -1,0 +1,422 @@
+<root UUID="lightningServer-2d-00-a0-00-34-bc">
+  <group language_index="server_info" id="server_info">
+    <node type="text" id="server_status" subscription="1">
+      <key>
+        <language_index>server_status</language_index>
+      </key>
+      <value>
+        <display_name>running</display_name>
+      </value>
+    </node>
+    <node type="text" id="server_total_path">
+      <key>
+        <language_index>total_path</language_index>
+      </key>
+      <value>
+        <display_name>1</display_name>
+      </value>
+    </node>
+    <node type="text" id="server_total_capacity">
+      <key>
+        <language_index>server_capacity</language_index>
+      </key>
+      <value>
+        <display_name>29.75G</display_name>
+      </value>
+    </node>
+    <node type="text" id="server_total_tracks">
+      <key>
+        <language_index>server_track_count</language_index>
+      </key>
+      <value>
+        <display_name>168</display_name>
+      </value>
+    </node>
+    <node type="text" id="last_rescan_time">
+      <key>
+        <language_index>last_rescan_time</language_index>
+      </key>
+      <value>
+        <display_name>2017-01-18 04:13:29</display_name>
+      </value>
+    </node>
+    <node type="button" id="server_rescan_all">
+      <key>
+        <language_index>library_rescan_all</language_index>
+      </key>
+    </node>
+  </group>
+  <group language_index="server_loaded_path" id="server_loaded_path" subscription="1">
+    <node type="compound" id="server_path_0" subscription="1">
+      <key>
+        <display_name>USB</display_name>
+      </key>
+      <value>
+        <language_index>path_status_connected</language_index>
+      </value>
+      <sub_node>
+        <node type="text" id="server_path_name_0">
+          <key>
+            <language_index>path_name</language_index>
+          </key>
+          <value editable="1">
+            <display_name>USB</display_name>
+            <value_rule>
+              <text_rule>unicode</text_rule>
+              <min_length>1</min_length>
+              <max_length>32</max_length>
+            </value_rule>
+          </value>
+        </node>
+        <node type="text" id="server_path_type_0">
+          <key>
+            <language_index>path_type</language_index>
+          </key>
+          <value>
+            <display_name>USB</display_name>
+          </value>
+        </node>
+        <node type="text" id="server_path_mount_status_0">
+          <key>
+            <language_index>path_mount_status</language_index>
+          </key>
+          <value>
+            <display_name>Connected</display_name>
+          </value>
+        </node>
+        <node type="text" id="server_path_capacity_0">
+          <key>
+            <language_index>path_capacity</language_index>
+          </key>
+          <value>
+            <display_name>29.75G</display_name>
+          </value>
+        </node>
+        <node type="text" id="server_path_song_number_0">
+          <key>
+            <language_index>path_track_count</language_index>
+          </key>
+          <value>
+            <display_name>168</display_name>
+          </value>
+        </node>
+        <node type="switch" id="server_path_mount_0">
+          <key>
+            <language_index>path_mount</language_index>
+          </key>
+          <value editable="1">
+            <switch_status>1</switch_status>
+          </value>
+        </node>
+        <node type="button" id="server_path_rescan_0">
+          <key>
+            <language_index>path_rescan</language_index>
+          </key>
+        </node>
+        <node type="button" id="server_path_delete_0">
+          <key>
+            <language_index>path_delete</language_index>
+          </key>
+          <warning>
+            <language_index>path_delete_warning</language_index>
+          </warning>
+        </node>
+      </sub_node>
+    </node>
+    <menu>
+      <node type="button" id="library_rescan_all">
+        <key>
+          <language_index>library_rescan_all</language_index>
+        </key>
+      </node>
+      <node type="menu" id="library_rescan_each">
+        <key>
+          <language_index>library_rescan_each</language_index>
+        </key>
+        <value>
+          <node type="button" id="server_path_rescan_0">
+            <key>
+              <language_index>library_rescan_0</language_index>
+            </key>
+          </node>
+        </value>
+      </node>
+      <node type="popup" id="library_add_smb">
+        <key>
+          <language_index>library_add_smb</language_index>
+        </key>
+        <value>
+          <pop_menu>add_smb_popup</pop_menu>
+        </value>
+      </node>
+    </menu>
+  </group>
+  <group language_index="tool_config" id="tool_config">
+    <node type="switch" id="enable_auto_rescan">
+      <key>
+        <language_index>enable_auto_rescan</language_index>
+      </key>
+      <value editable="1">
+        <switch_status>0</switch_status>
+      </value>
+      <attached_node value_condition="1">
+        <node type="list" id="auto_rescan_schedule">
+          <key>
+            <language_index>auto_rescan_time</language_index>
+          </key>
+          <value editable="1">
+            <display_name>0:00AM</display_name>
+            <value_rule>
+              <option id="0">
+                <display_name>0:00AM</display_name>
+              </option>
+              <option id="1">
+                <display_name>1:00AM</display_name>
+              </option>
+              <option id="2">
+                <display_name>2:00AM</display_name>
+              </option>
+              <option id="3">
+                <display_name>3:00AM</display_name>
+              </option>
+              <option id="4">
+                <display_name>4:00AM</display_name>
+              </option>
+              <option id="5">
+                <display_name>5:00AM</display_name>
+              </option>
+              <option id="6">
+                <display_name>6:00AM</display_name>
+              </option>
+              <option id="7">
+                <display_name>7:00AM</display_name>
+              </option>
+              <option id="8">
+                <display_name>8:00AM</display_name>
+              </option>
+              <option id="9">
+                <display_name>9:00AM</display_name>
+              </option>
+              <option id="10">
+                <display_name>10:00AM</display_name>
+              </option>
+              <option id="11">
+                <display_name>11:00AM</display_name>
+              </option>
+              <option id="12">
+                <display_name>12:00AM</display_name>
+              </option>
+              <option id="13">
+                <display_name>1:00PM</display_name>
+              </option>
+              <option id="14">
+                <display_name>2:00PM</display_name>
+              </option>
+              <option id="15">
+                <display_name>3:00PM</display_name>
+              </option>
+              <option id="16">
+                <display_name>4:00PM</display_name>
+              </option>
+              <option id="17">
+                <display_name>5:00PM</display_name>
+              </option>
+              <option id="18">
+                <display_name>6:00PM</display_name>
+              </option>
+              <option id="19">
+                <display_name>7:00PM</display_name>
+              </option>
+              <option id="20">
+                <display_name>8:00PM</display_name>
+              </option>
+              <option id="21">
+                <display_name>9:00PM</display_name>
+              </option>
+              <option id="22">
+                <display_name>10:00PM</display_name>
+              </option>
+              <option id="23">
+                <display_name>11:00PM</display_name>
+              </option>
+            </value_rule>
+          </value>
+        </node>
+      </attached_node>
+    </node>
+    <node type="switch" id="enable_ignore_prefix_album">
+      <key>
+        <language_index>enable_ignore_prefix_album</language_index>
+      </key>
+      <value editable="1">
+        <switch_status>1</switch_status>
+      </value>
+      <attached_node value_condition="1">
+        <node type="text" id="ignore_prefix_list_album">
+          <key>
+            <language_index>ignore_prefix</language_index>
+          </key>
+          <value editable="1">
+            <display_name>The the a A</display_name>
+            <value_rule>
+              <text_rule>unicode</text_rule>
+              <min_length>0</min_length>
+              <max_length>255</max_length>
+            </value_rule>
+          </value>
+        </node>
+      </attached_node>
+    </node>
+    <node type="switch" id="enable_ignore_prefix_artist">
+      <key>
+        <language_index>enable_ignore_prefix_artist</language_index>
+      </key>
+      <value editable="1">
+        <switch_status>1</switch_status>
+      </value>
+      <attached_node value_condition="1">
+        <node type="text" id="ignore_prefix_list_artist">
+          <key>
+            <language_index>ignore_prefix</language_index>
+          </key>
+          <value editable="1">
+            <display_name>The the a A</display_name>
+            <value_rule>
+              <text_rule>unicode</text_rule>
+              <min_length>0</min_length>
+              <max_length>255</max_length>
+            </value_rule>
+          </value>
+        </node>
+      </attached_node>
+    </node>
+    <node type="switch" id="enable_ignore_prefix_track">
+      <key>
+        <language_index>enable_ignore_prefix_track</language_index>
+      </key>
+      <value editable="1">
+        <switch_status>1</switch_status>
+      </value>
+      <attached_node value_condition="1">
+        <node type="text" id="ignore_prefix_list_track">
+          <key>
+            <language_index>ignore_prefix</language_index>
+          </key>
+          <value editable="1">
+            <display_name>The the a A</display_name>
+            <value_rule>
+              <text_rule>unicode</text_rule>
+              <min_length>0</min_length>
+              <max_length>255</max_length>
+            </value_rule>
+          </value>
+        </node>
+      </attached_node>
+    </node>
+    <node type="button" id="delete_all_index">
+      <key>
+        <language_index>delete_all_index</language_index>
+      </key>
+      <warning>
+        <language_index>delete_all_index_warning</language_index>
+      </warning>
+    </node>
+  </group>
+  <group language_index="server_version" id="server_version">
+    <node type="text" id="scan_version">
+      <key>
+        <language_index>scan_version</language_index>
+      </key>
+      <value>
+        <display_name>ABCDEFGH-1</display_name>
+      </value>
+    </node>
+    <node type="text" id="current_version">
+      <key>
+        <language_index>current_version</language_index>
+      </key>
+      <value>
+        <display_name>1.13</display_name>
+      </value>
+    </node>
+  </group>
+  <pop_menu id="add_hdd_popup">
+    <title>
+      <language_index>add_hdd_pop_title</language_index>
+    </title>
+    <content>
+      <node type="text" id="add_path_name_hdd">
+        <key>
+          <language_index>path_name</language_index>
+        </key>
+        <value editable="1">
+          <display_name/>
+          <value_rule>
+            <text_rule>unicode</text_rule>
+            <min_length>1</min_length>
+            <max_length>32</max_length>
+          </value_rule>
+        </value>
+      </node>
+    </content>
+  </pop_menu>
+  <pop_menu id="add_smb_popup">
+    <title>
+      <language_index>add_smb_pop_title</language_index>
+    </title>
+    <content>
+      <node type="text" id="add_path_name_smb">
+        <key>
+          <language_index>path_name</language_index>
+        </key>
+        <value editable="1">
+          <display_name/>
+          <value_rule>
+            <text_rule>unicode</text_rule>
+            <min_length>1</min_length>
+            <max_length>32</max_length>
+          </value_rule>
+        </value>
+      </node>
+      <node type="text" id="add_smb_path">
+        <key>
+          <language_index>smb_path_url</language_index>
+        </key>
+        <value editable="1">
+          <display_name/>
+          <value_rule>
+            <text_rule>ascii</text_rule>
+            <min_length>1</min_length>
+            <max_length>128</max_length>
+          </value_rule>
+        </value>
+      </node>
+      <node type="text" id="add_smb_username">
+        <key>
+          <language_index>smb_path_username</language_index>
+        </key>
+        <value editable="1">
+          <display_name/>
+          <value_rule>
+            <text_rule>ascii</text_rule>
+            <min_length>1</min_length>
+            <max_length>128</max_length>
+          </value_rule>
+        </value>
+      </node>
+      <node type="text" id="add_smb_password">
+        <key>
+          <language_index>smb_path_password</language_index>
+        </key>
+        <value editable="1">
+          <display_name password="1"/>
+          <value_rule>
+            <text_rule>ascii</text_rule>
+            <min_length>1</min_length>
+            <max_length>128</max_length>
+          </value_rule>
+        </value>
+      </node>
+    </content>
+  </pop_menu>
+</root>

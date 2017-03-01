@@ -1,0 +1,15 @@
+<!-- switch ui compoent -->
+<div class="form-group ohnet-list">
+	<label class="{{leftClass}} control-label" data-animate="fadeIn"><span>{{translate(source.key) | translate}}</span><span ng-bind-html="_comment | to_trusted"></span></label>
+	<div class="{{rightClass}}">
+		<div class="btn-group dropdown pull-right" ng-class="{'disabled' : !source.value._editable}">
+          <button type="button" class="btn btn-default" ng-disabled="!source.value._editable" data-toggle="dropdown" data-animate="fadeIn">
+            {{translate(source.value) | translate}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li ng-repeat="o in _options" ng-click="change(o)" data-opt-id="{{o._id}}"><a href="javascript:void(0)">{{translate(o) | translate}}</a></li>
+          </ul>
+        </div>
+	</div>
+</div>

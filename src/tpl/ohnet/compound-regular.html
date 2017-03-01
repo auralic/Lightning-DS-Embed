@@ -1,0 +1,19 @@
+<!-- switch ui compoent -->
+<div class="form-group compound padder" data-animate="fadeIn">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			{{translate(source.key) | translate}}<div class="compound-icon pull-right"><span>{{translate(source.value) | translate}}</span><i class="fa fa-angle-right" ng-class="{'fa-rotate-90': isOpen}"></i></div>
+		</div>
+		<div class="panel-body" style="display:none;" ng-class="{'compound-no-btn' : !isEditable}">
+			<form class="form-horizontal form-sm">
+				<div class="compound-contaner"></div>
+				<div class="form-group btns padder mt" ng-show="isEditable">
+					<p class="pull-right">
+						<button class="btn btn-default" ng-disabled="_ineditor>0" ng-click="_cancel()">{{ generalTranslate('cancel') | translate}}</button>
+						<button class="btn btn-primary" ng-disabled="_ineditor>0" ng-click="_save()">{{ generalTranslate('save') | translate}}</button>
+					</p>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

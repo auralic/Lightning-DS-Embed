@@ -1,0 +1,13 @@
+<div ng-switch="source._type">
+  <div ng-switch-when="menu" class="dropdown-submenu" ng-show="_nodes.length>0">
+    <a href="javascript:void(0)" class="menu-item" ng-class="{'disabled':source._disabled==1}">{{translate(source.key) | translate}}</a>
+    <ul class="dropdown-menu" role="menu">
+      <li ng-repeat="o in _nodes" data-id="{{o._id}}" ng-class="{'disabled':o._disabled==1}">
+          <div data-ohnet-ui-group-menu-item data-source="o" data-ui-type="group-menu-item" data-node-type="regular"></div>
+      </li>
+    </ul>
+  </div>
+  <a href="javascript:void(0)" ng-switch-when="popup" ng-click="_popmenu()" ng-class="{'disabled':source._disabled==1}">{{translate(source.key) | translate}}</a>
+  <a href="javascript:void(0)" ng-switch-when="pop_button" ng-click="_pop_button()" ng-class="{'disabled':source._disabled==1}">{{translate(source.key) | translate}}</a>
+  <a ng-switch-default href="javascript:void(0)" ng-class="{'disabled':source._disabled==1}"  ng-click="_click()">{{translate(source.key) | translate}}</a>
+</div>

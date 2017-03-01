@@ -1,0 +1,21 @@
+<!-- switch ui compoent -->
+<div class="form-group ohnet-text">
+	<div class="ohnet-text-label">
+		<label class="{{leftClass}} control-label"><span>{{translate(source.key) | translate}}</span><span ng-bind-html="_comment | to_trusted"></span></label>
+		<div class="{{rightClass}}">
+			<div class="pull-right label-col">
+				{{_formatText}}
+				<span class="fa fa-edit edit-bar" ng-show="source.value._editable==1" ng-click="_showEditor()"></span>
+			</div>
+		</div>
+	</div>
+	<div class="ohnet-text-editor" style="display:none;">
+		<label class="{{leftClass}} control-label pull-left"><input type="{{source.value.display_name._password==1 ? 'password' : 'text'}}" class="form-control" name="{{source._id}}" ng-model="textInput" ng-class="{'error' : isError}"/></label>
+		<div class="{{rightClass}}">
+			<div class="pull-right">
+				<button class="btn btn-default" ng-click="_cancel()">{{ generalTranslate('cancel') | translate}}</button>
+				<button class="btn btn-primary" ng-click="_save()">{{ generalTranslate('save') | translate}}</button>
+			</div>
+		</div>
+	</div>
+</div>

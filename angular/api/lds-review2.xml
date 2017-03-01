@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <group language_index="device_name" id="device-abc">
+        <node type="text" id="device_name">
+            <key>
+                <language_index>device_name</language_index>
+            </key>
+            <value editable="1">
+                <display_name>Living Room</display_name>
+                <value_rule>
+                    <text_rule>unicode</text_rule>
+                    <min_length>1</min_length>
+                    <max_length>32</max_length>
+                </value_rule>
+            </value>
+        </node>
+        <node type="button" id="initialize_HDD" disabled="0">
+            <key>
+                <language_index>initialize_HDD</language_index>
+            </key>
+            <warning>
+                <language_index>HDD_init_warning</language_index>
+                <warning>
+                    <language_index>HDD_init_warning</language_index>
+                </warning>
+            </warning>
+        </node>
+    </group>
+    <group language_index="password_protect" id="group-abc1">
+        <node type="switch" id="passcode_switch">
+            <key>
+                <language_index>streamer_passcode</language_index>
+            </key>
+            <value editable="1">
+                <switch_status>0</switch_status>
+            </value>
+            <warning>
+                <display_name>取消密码保护</display_name>
+            </warning>
+            <attached_node value_condition="1">
+                <node type="text" id="passcode">
+                    <key>
+                        <language_index>passcode</language_index>
+                    </key>
+                    <value editable="1">
+                        <display_name>111111</display_name>
+                        <value_rule>
+                            <text_rule>unicode</text_rule>
+                            <min_length>4</min_length>
+                            <max_length>8</max_length>
+                        </value_rule>
+                    </value>
+                </node>
+            </attached_node>
+        </node>
+    </group>
+    <group language_index="operation_mode" id="group-abc2">
+        <node type="list" id="operation_mode">
+            <key>
+                <language_index>operation_mode</language_index>
+            </key>
+            <value editable="1">
+                <language_index>Lightning_device</language_index>
+                <value_rule>
+                    <option id="OpenHome">
+                        <language_index>Lightning_device</language_index>
+                    </option>
+                    <option id="Upnp">
+                        <language_index>Upnp_device</language_index>
+                    </option>
+                </value_rule>
+            </value>
+        </node>
+    </group>
+    <group language_index="button_function" id="group-abc3">
+        <node type="list" id="aside_button">
+            <key>
+                <language_index>aside_button</language_index>
+            </key>
+            <value editable="0">
+                <language_index>volume_control</language_index>
+                <value_rule>
+                    <option id="1">
+                        <language_index>volume_control</language_index>
+                    </option>
+                    <option id="2">
+                        <language_index>select_track</language_index>
+                    </option>
+                </value_rule>
+            </value>
+        </node>
+        <node type="list" id="center_button">
+            <key>
+                <language_index>center_button</language_index>
+            </key>
+            <value editable="1">
+                <language_index>pause</language_index>
+                <value_rule>
+                    <option id="1">
+                        <language_index>pause</language_index>
+                    </option>
+                    <option id="2">
+                        <language_index>mute</language_index>
+                    </option>
+                </value_rule>
+            </value>
+        </node>
+    </group>
+    <group language_index="led_indicator" id="group-abc4">
+        <node type="list" id="idle_status">
+            <key>
+                <language_index>idle_status</language_index>
+            </key>
+            <value editable="1">
+                <language_index>led_on</language_index>
+                <value_rule>
+                    <option id="0">
+                        <language_index>led_on</language_index>
+                    </option>
+                    <option id="1">
+                        <language_index>led_off</language_index>
+                    </option>
+                    <option id="2">
+                        <language_index>led_autooff</language_index>
+                    </option>
+                </value_rule>
+            </value>
+        </node>
+        <node type="list" id="led_brightness">
+            <key>
+                <language_index>led_brightness</language_index>
+            </key>
+            <value editable="1">
+                <language_index>normal</language_index>
+                <value_rule>
+                    <option id="0">
+                        <language_index>dim</language_index>
+                    </option>
+                    <option id="1">
+                        <language_index>normal</language_index>
+                    </option>
+                    <option id="2">
+                        <language_index>bright</language_index>
+                    </option>
+                </value_rule>
+            </value>
+        </node>
+    </group>
+    <group language_index="output_channel" id="group-abc6">
+        <node type="list" id="output_channel">
+            <key>
+                <language_index>output_channel</language_index>
+            </key>
+            <value editable="1">
+                <display_name>ARIES Output</display_name>
+                <value_rule>
+                    <option id="hw0,0">
+                        <display_name>ARIES Output</display_name>
+                    </option>
+                    <option id="hw1,0">
+                        <display_name>AURALiC USB Audio</display_name>
+                    </option>
+                </value_rule>
+            </value>
+            <attached_node value_condition="hw0,0">
+                <node type="list" id="volume_type">
+                    <key>
+                        <language_index>volume_type</language_index>
+                    </key>
+                    <value editable="1">
+                        <language_index>software_volume</language_index>
+                        <value_rule>
+                            <option id="software">
+                                <language_index>software_volume</language_index>
+                            </option>
+                            <option id="hardware">
+                                <language_index>hardware_volume</language_index>
+                            </option>
+                        </value_rule>
+                    </value>
+                </node>
+            </attached_node>
+            <attached_node value_condition="hw1,0">
+                <node type="switch" id="enable_volume_control">
+                    <key>
+                        <language_index>enable_volume_control</language_index>
+                    </key>
+                    <value editable="1">
+                        <switch_status>1</switch_status>
+                    </value>
+                </node>
+            </attached_node>
+        </node>
+    </group>
+    <group language_index="available_input" id="group-abc7">
+        <node type="switch" id="airplay_available_switch">
+            <key>
+                <language_index>airplay</language_index>
+            </key>
+            <value editable="0">
+                <switch_status>0</switch_status>
+            </value>
+        </node>
+        <node type="switch" id="bluetooth_available_switch">
+            <key>
+                <language_index>bluetooth</language_index>
+            </key>
+            <value editable="1">
+                <switch_status>0</switch_status>
+            </value>
+        </node>
+        <node type="switch" id="roon_available_switch">
+            <key>
+                <language_index>roon</language_index>
+            </key>
+            <value editable="1">
+                <switch_status>0</switch_status>
+            </value>
+        </node>
+    </group>
+    <group language_index="dac_delay" id="group-abc8">
+        <node type="list" id="delay_time">
+            <key>
+                <language_index>delay_time</language_index>
+            </key>
+            <value editable="1">
+                <language_index>second_1</language_index>
+                <value_rule>
+                    <option id="0">
+                        <language_index>second_0</language_index>
+                    </option>
+                    <option id="1">
+                        <language_index>second_1</language_index>
+                    </option>
+                    <option id="2">
+                        <language_index>second_2</language_index>
+                    </option>
+                    <option id="3">
+                        <language_index>second_3</language_index>
+                    </option>
+                    <option id="4">
+                        <language_index>second_4</language_index>
+                    </option>
+                    <option id="5">
+                        <language_index>second_5</language_index>
+                    </option>
+                </value_rule>
+            </value>
+        </node>
+    </group>
+    <group language_index="volume_control" id="group-abc9">
+        <node type="switch" id="volume_control_status">
+            <key>
+                <language_index>volume_control_status</language_index>
+            </key>
+            <value editable="1">
+                <switch_status>0</switch_status>
+            </value>
+            <attached_node value_condition="1">
+                <node type="list" id="volume_control">
+                    <key>
+                        <language_index>volume_control</language_index>
+                    </key>
+                    <value editable="1">
+                        <language_index>software_volume</language_index>
+                        <value_rule>
+                            <option id="1">
+                                <language_index>software_volume</language_index>
+                            </option>
+                            <option id="2">
+                                <language_index>hardware_volume</language_index>
+                            </option>
+                        </value_rule>
+                    </value>
+                </node>
+            </attached_node>
+        </node>
+    </group>
+    <group language_index="dac_setting" id="group-abc10">
+        <node type="list" id="dac_filter">
+            <key>
+                <language_index>dac_filter</language_index>
+            </key>
+            <value editable="1">
+                <language_index>filter_mode0</language_index>
+                <value_rule>
+                    <option id="0">
+                        <language_index>filter_mode0</language_index>
+                    </option>
+                    <option id="1">
+                        <language_index>filter_mode1</language_index>
+                    </option>
+                    <option id="2">
+                        <language_index>filter_mode2</language_index>
+                    </option>
+                    <option id="3">
+                        <language_index>filter_mode3</language_index>
+                    </option>
+                </value_rule>
+            </value>
+        </node>
+        <node type="list" id="dac_phase">
+            <key>
+                <language_index>dac_phase</language_index>
+            </key>
+            <value editable="1">
+                <language_index>phase_normal</language_index>
+                <value_rule>
+                    <option id="0">
+                        <language_index>phase_normal</language_index>
+                    </option>
+                    <option id="1">
+                        <language_index>phase_invert</language_index>
+                    </option>
+                </value_rule>
+            </value>
+        </node>
+        <node type="balance_slider" id="dac_balance">
+            <key>
+                <language_index>channel_balance</language_index>
+            </key>
+            <value editable="1">
+                <balance_number>59</balance_number>
+                <value_rule>
+                    <balance_min>28</balance_min>
+                    <balance_max>228</balance_max>
+                    <balance_center>128</balance_center>
+                </value_rule>
+            </value>
+        </node>
+    </group>
+    <group language_index="device_info" id="group-abc11">
+        <node type="text" id="device_mfg">
+            <key>
+                <language_index>info_device_mfg</language_index>
+            </key>
+            <value editable="0">
+                <display_name>AURALiC</display_name>
+            </value>
+        </node>
+        <node type="text" id="device_mac0">
+            <key>
+                <language_index>info_device_mac0</language_index>
+            </key>
+            <value editable="0">
+                <display_name>BC:34:00:A0:01:02</display_name>
+            </value>
+        </node>
+    </group>
+    <group language_index="firmware_version" subscription="1" id="group-abc12">
+        <node type="text" id="firmware_version">
+            <key>
+                <language_index>firmware_version</language_index>
+            </key>
+            <value>
+                <display_name>4.1.1</display_name>
+            </value>
+        </node>
+    </group>
+    <group language_index="network_info" id="group-abc13">
+        <node type="compound" id="">
+            <key>
+                <language_index>network_connection</language_index>
+            </key>
+            <value>
+                <language_index>wireless</language_index>
+            </value>
+            <sub_node>
+                <node type="text" id="wifi_ssid">
+                    <key>
+                        <language_index>wifi_ssid</language_index>
+                    </key>
+                    <value editable="0">
+                        <display_name>AURALiC_5G</display_name>
+                    </value>
+                </node>
+                <node type="text" id="ip_address">
+                    <key>
+                        <language_index>ip_address</language_index>
+                    </key>
+                    <value editable="0">
+                        <display_name>192.168.1.101</display_name>
+                    </value>
+                </node>
+                <node type="text" id="netmask">
+                    <key>
+                        <language_index>netmask</language_index>
+                    </key>
+                    <value editable="0">
+                        <display_name>255.255.255.0</display_name>
+                    </value>
+                </node>
+                <node type="text" id="gateway">
+                    <key>
+                        <language_index>gateway</language_index>
+                    </key>
+                    <value editable="0">
+                        <display_name>192.168.1.1</display_name>
+                    </value>
+                </node>
+            </sub_node>
+        </node>
+    </group>
+    <group language_index="music_library" id="group-abc14">
+        <node type="compound" id="server_path_1">
+            <key>
+                <display_name>My USB Disk</display_name>
+            </key>
+            <value>
+                <language_index>path_status_connected</language_index>
+            </value>
+            <sub_node>
+                <node type="text" id="server_path_1_name">
+                    <key>
+                        <language_index>path_name</language_index>
+                    </key>
+                    <value editable="1">
+                        <display_name>My USB Disk</display_name>
+                        <value_rule>
+                            <text_rule>unicode</text_rule>
+                            <min_length>1</min_length>
+                            <max_length>32</max_length>
+                        </value_rule>
+                    </value>
+                </node>
+                <node type="text" id="server_path_1_type">
+                    <key>
+                        <language_index>path_type</language_index>
+                    </key>
+                    <value>
+                        <display_name>USB</display_name>
+                    </value>
+                </node>
+                <node type="switch" id="server_path_1_mount">
+                    <key>
+                        <language_index>path_mount</language_index>
+                    </key>
+                    <value editable="1">
+                        <switch_status>1</switch_status>
+                    </value>
+                </node>
+                <node type="button" id="server_path_1_rescan">
+                    <key>
+                        <language_index>path_rescan</language_index>
+                    </key>
+                </node>
+                <node type="button" id="server_path_1_delete">
+                    <key>
+                        <language_index>path_delete</language_index>
+                    </key>
+                    <warning>
+                        <language_index>path_delete_warning</language_index>
+                    </warning>
+                </node>
+            </sub_node>
+        </node>
+        <node type="compound" id="server_path_2">
+            <key>
+                <display_name>My HardDisk</display_name>
+            </key>
+            <value>
+                <language_index>path_status_connected</language_index>
+            </value>
+            <sub_node>
+                <node type="text" id="server_path_2_name">
+                    <key>
+                        <language_index>path_name</language_index>
+                    </key>
+                    <value editable="1">
+                        <display_name>My HardDisk</display_name>
+                        <value_rule>
+                            <text_rule>unicode</text_rule>
+                            <min_length>1</min_length>
+                            <max_length>32</max_length>
+                        </value_rule>
+                    </value>
+                </node>
+                <node type="text" id="server_path_2_type">
+                    <key>
+                        <language_index>path_type</language_index>
+                    </key>
+                    <value>
+                        <display_name>HardDisk</display_name>
+                    </value>
+                </node>
+                <node type="switch" id="server_path_2_mount">
+                    <key>
+                        <language_index>path_mount</language_index>
+                    </key>
+                    <value editable="1">
+                        <switch_status>1</switch_status>
+                    </value>
+                </node>
+                <node type="button" id="server_path_2_rescan">
+                    <key>
+                        <language_index>path_rescan</language_index>
+                    </key>
+                </node>
+                <node type="button" id="server_path_2_delete">
+                    <key>
+                        <language_index>path_delete</language_index>
+                    </key>
+                    <warning>
+                        <language_index>path_delete_warning</language_index>
+                    </warning>
+                </node>
+            </sub_node>
+        </node>
+        <node type="compound" id="server_path_3">
+            <key>
+                <display_name>My SMB</display_name>
+            </key>
+            <value>
+                <language_index>path_status_connected</language_index>
+            </value>
+            <sub_node>
+                <node type="text" id="server_path_3_name">
+                    <key>
+                        <language_index>path_name</language_index>
+                    </key>
+                    <value editable="1">
+                        <display_name>My SMB</display_name>
+                        <value_rule>
+                            <text_rule>unicode</text_rule>
+                            <min_length>1</min_length>
+                            <max_length>32</max_length>
+                        </value_rule>
+                    </value>
+                </node>
+                <node type="text" id="server_path_3_type">
+                    <key>
+                        <language_index>path_type</language_index>
+                    </key>
+                    <value>
+                        <display_name>SMB</display_name>
+                    </value>
+                </node>
+                <node type="switch" id="server_path_3_mount">
+                    <key>
+                        <language_index>path_mount</language_index>
+                    </key>
+                    <value editable="1">
+                        <switch_status>1</switch_status>
+                    </value>
+                </node>
+                <node type="button" id="server_path_3_rescan">
+                    <key>
+                        <language_index>path_rescan</language_index>
+                    </key>
+                </node>
+                <node type="button" id="server_path_3_delete">
+                    <key>
+                        <language_index>path_delete</language_index>
+                    </key>
+                    <warning>
+                        <language_index>path_delete_warning</language_index>
+                    </warning>
+                </node>
+            </sub_node>
+        </node>
+        <menu>
+            <node type="button" id="library_disable" disabled="1">
+                <key>
+                    <language_index>library_disable</language_index>
+                </key>
+            </node>
+            <node type="button" id="library_enable">
+                <key>
+                    <language_index>library_enable</language_index>
+                </key>
+            </node>
+            <node type="button" id="library_rescan_all">
+                <key>
+                    <language_index>library_rescan_all</language_index>
+                </key>
+            </node>
+            <node type="menu" id="library_rescan_each">
+                <key>
+                    <language_index>library_rescan_each</language_index>
+                </key>
+                <value>
+                    <node type="button" id="library_rescan_usb">
+                        <key>
+                            <language_index>library_rescan_usb</language_index>
+                        </key>
+                    </node>
+                    <node type="button" id="library_rescan_hdd" disabled="1">
+                        <key>
+                            <language_index>library_rescan_hdd</language_index>
+                        </key>
+                    </node>
+                </value>
+            </node>
+            <node type="popup" id="add_usb">
+                <key>
+                    <language_index>add_usb</language_index>
+                </key>
+                <value>
+                    <pop_menu>add_usb</pop_menu>
+                </value>
+            </node>
+            <node type="popup" id="add_hdd">
+                <key>
+                    <language_index>add_hdd</language_index>
+                </key>
+                <value>
+                    <pop_menu>add_hdd</pop_menu>
+                </value>
+            </node>
+            <node type="popup" id="add_smbs">
+                <key>
+                    <language_index>add_smbs</language_index>
+                </key>
+                <value>
+                    <pop_menu>add_smb</pop_menu>
+                </value>
+            </node>
+        </menu>
+    </group>
+    <pop_menu id="add_usb">
+        <title>
+            <language_index>add_usb</language_index>
+        </title>
+        <content>
+            <node type="text" id="">
+                <key>
+                    <language_index>path_name</language_index>
+                </key>
+                <value editable="1">
+                    <value_rule>
+                        <text_rule>unicode</text_rule>
+                        <min_length>1</min_length>
+                        <max_length>32</max_length>
+                    </value_rule>
+                </value>
+            </node>
+        </content>
+    </pop_menu>
+    <pop_menu id="add_hdd">
+        <title>
+            <language_index>add_hdd</language_index>
+        </title>
+        <content>
+            <node type="text" id="">
+                <key>
+                    <language_index>path_name</language_index>
+                </key>
+                <value editable="1">
+                    <value_rule>
+                        <text_rule>unicode</text_rule>
+                        <min_length>1</min_length>
+                        <max_length>32</max_length>
+                    </value_rule>
+                </value>
+            </node>
+        </content>
+    </pop_menu>
+    <pop_menu id="add_smb">
+        <title>
+            <language_index>add_hdd</language_index>
+        </title>
+        <content>
+            <node type="text" id="smb_path_name">
+                <key>
+                    <language_index>path_name</language_index>
+                </key>
+                <value editable="1">
+                    <display_name></display_name>
+                    <value_rule>
+                        <text_rule>unicode</text_rule>
+                        <min_length>1</min_length>
+                        <max_length>32</max_length>
+                    </value_rule>
+                </value>
+            </node>
+            <node type="text" id="smb_path_url">
+                <key>
+                    <language_index>smb_path_url</language_index>
+                </key>
+                <value editable="1">
+                    <display_name></display_name>
+                    <value_rule>
+                        <text_rule>unicode</text_rule>
+                        <min_length>1</min_length>
+                        <max_length>32</max_length>
+                    </value_rule>
+                </value>
+            </node>
+            <node type="text" id="smb_usr_name">
+                <key>
+                    <language_index>smb_usr_name</language_index>
+                </key>
+                <value editable="1">
+                    <display_name></display_name>
+                    <value_rule>
+                        <text_rule>unicode</text_rule>
+                        <min_length>1</min_length>
+                        <max_length>32</max_length>
+                    </value_rule>
+                </value>
+            </node>
+            <node type="text" id="smb_password">
+                <key>
+                    <language_index>smb_password</language_index>
+                </key>
+                <value editable="1">
+                    <display_name password="1"></display_name>
+                    <value_rule>
+                        <text_rule>unicode</text_rule>
+                        <min_length>1</min_length>
+                        <max_length>32</max_length>
+                    </value_rule>
+                </value>
+            </node>
+        </content>
+    </pop_menu>
+</root>

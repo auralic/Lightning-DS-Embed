@@ -1,0 +1,47 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs bg-light " ng-init="
+  app.settings.asideFolded = false; 
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false
+  ">
+  <!-- column -->
+  <div class="col">
+    <div class="vbox">
+      <div class="row-row">
+        <div class="cell" id="refresh-body-id">
+          <div id="refresh-loading-mask-id"></div>
+          <div id="refresh-loading-id"><span us-spinner="{radius:20, width:8, length: 8}" spinner-key="spinner-1" spinner-start-active="true"></span></div>
+          <div class="cell-inner" ng-controller="UiConfigCtrl" id="ui-config-container-id">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /column -->
+
+  <!-- column -->
+  <div class="col w-40 lter b-l">
+    <div class="vbox">
+      <div class="wrapper b-b b-light">
+        <div class="font-thin h4">Header</div>
+        <small class="text-muted">with fluid height</small>
+      </div>
+      <div class="row-row">
+        <div class="cell">
+          <div class="cell-inner">
+            <div class="wrapper-md" ng-controller="UiCommentCtrl" id="ui-comment-container-id">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="padder b-t b-light text-center">
+        <div class="m-xs">Footer with fluid height</div>
+      </div>
+    </div>
+  </div>
+  <!-- /column -->
+</div>
+<!-- /hbox layout -->

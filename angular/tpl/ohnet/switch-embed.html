@@ -1,0 +1,9 @@
+<!-- switch ui compoent -->
+<div class="form-group" data-animate="fadeIn">
+	<label class="{{leftClass}} control-label"><span>{{translate(source.key) | translate}}</span><span ng-bind-html="_comment | to_trusted"></span></label>
+	<div class="{{rightClass}}">
+		<div class="btn-group pull-right">
+			<label class="i-switch bg-info m-t-xs" ng-class="{'disabled' : source.value._editable == 0}"><input type="checkbox" ng-click="_clickChange()"  ng-model="source.value.switch_status" name="{{source._id}}" ng-disabled="source.value._editable == 0" ng-true-value="1" ng-false-value="0"><i></i></label>
+		</div>
+	</div>
+</div>

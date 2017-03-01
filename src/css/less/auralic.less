@@ -1,0 +1,334 @@
+// Core variables and mixins
+@import "app.variables.less";
+@import "app.mixins.less";
+@import "auralic.variables.less";
+
+.disabled{
+	cursor: not-allowed !important;
+}
+input.error,input.error:focus{
+	border-color: red;
+}
+.form-group{
+	min-height: 34px;
+	.control-label{
+		line-height: @lh;
+		padding-top: 0 !important;
+	}
+	.disabled{
+		.opacity(@disabled-opacity);
+		cursor: not-allowed;
+	}
+	.edit-bar{
+		font-size:1.2em;
+		padding-left: @space /2;
+		vertical-align: middle;
+	}
+	.btn-group{
+		button{
+			margin-right: @space /2;
+			&:last-child{
+				margin-right: 0;
+			}
+		}
+	}
+	.label-col{
+		line-height: @lh;
+	}
+}
+.not-animated{
+	.opacity(0);
+}
+.animated{
+	.opacity(1);
+}
+.warning-text{
+	color:red !important;
+}
+.nowrap{
+	white-space: nowrap;
+}
+.btn{
+	transition:all .5s;
+}
+.pl{
+	padding-left: @space;
+}
+.mt{
+	margin-top: @space;
+}
+.mt-xs{
+	margin-top: @space /2;
+}
+.pl-xs{
+	padding-left: @space /2;
+}
+.pr{
+	padding-right: @space;
+}
+.pr-xs{
+	padding-right: @space /2;
+}
+.fc-link{
+	color:@link-color;
+}
+#refresh-body-id{
+	position: relative;
+	#refresh-loading-id{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		z-index: 1000;
+	}
+	#refresh-loading-mask-id{
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		.opacity(0.2);
+		z-index: 999;
+		background-color: #FFF;
+	}
+}
+.btn-primary{
+	background-color: @btn-primary-color;
+    border-color: @btn-primary-color;
+    &:active, &.active{
+    	background-color: @btn-primary-color-hover !important;
+    	border-color: @btn-primary-color !important;
+    }
+    &:hover{
+    	background-color: @btn-primary-color-hover;
+    	border-color: @btn-primary-color;
+    }
+}
+
+/* comment style */
+#ui-comment-container-id{
+	> div{
+		margin:1em 0;
+	}
+	.comment-1{
+		
+	}
+	.comment-2{
+		text-indent: 2em;
+	}
+	.comment-3{
+		text-indent: 4em;
+	}
+}
+
+/* form style */
+.form-horizontal{
+	&.form-sm{
+		.form-group{
+			margin: @space /2 0 !important;
+			padding: 0 !important;
+		}
+	}
+}
+/*  balance slider style */
+.balance-slider{
+	.slider-contaner{
+		margin: @space/2 0;
+	}
+	.btns{
+		margin:@space;
+		text-align: right;
+		margin-top:0;
+	}
+	.btn-group button{
+		margin-right: 0;
+	}
+}
+/*  compound slider style */
+.compound{
+	> .panel{
+		margin-bottom: 0;
+		> .panel-heading{
+			cursor: pointer;
+			background-color: #FAFAFA;
+			span{
+				padding-right: @space/2;
+				color: @fc-gray;
+			}
+			i{
+				transition:all .5s;
+			}
+		}
+		> .panel-body{
+			padding-bottom: 0;
+		}
+		> .compound-no-btn  .line:last-child{
+			display: none;
+		}
+	}
+}
+/* text style */
+.ohnet-text{
+	position: relative;
+	.edit-bar{
+		cursor: pointer;
+	}
+	.ohnet-text-editor{
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 10;
+		width: 100%;
+	}
+}
+/* pop menu style */
+.pop-menu{
+	.modal-body{
+		padding-top:0;
+		padding-bottom:0;
+	}
+	.pop-menu-content{
+		.form-group{
+			margin:0;
+			padding:@space/2;
+		}
+	}
+}
+/* list style */
+.ohnet-list{
+	.btn-group button{
+		margin-right: 0;
+	}
+}
+.comment-icon{
+	vertical-align: middle;
+	padding-left:@space /4;
+	color: @btn-primary-color;
+}
+.ohnet-group{
+	.ohnet-space{
+		height: @lh;
+		width: 100%;
+	}
+	> .panel-heading{
+		position: relative;
+		.ohnet-group-menu{
+			.ohnet-group-menu-bar{
+				color:@btn-primary-color;
+				font-size: 1.2em;
+				cursor: pointer;
+			}
+			.dropdown-menu{
+				right: 0;
+				left: auto;
+				a{
+					display: block;
+				    padding: 5px 15px;
+				    clear: both;
+				    font-weight: normal;
+				    white-space: nowrap;
+				    &:hover{
+    					background-color: #edf1f2;
+				    }
+				    &.disabled{
+				    	background-color: #FFF;
+				    }
+				}
+				.dropdown-submenu{
+					.dropdown-menu{
+					    top: 0;
+					    right: 100%;
+					    left: auto;
+					    margin-top: -6px;
+					    margin-left: -1px;
+					}
+					&:hover .dropdown-menu{
+						display: block;
+					}
+				}
+				li.disabled{
+					.opacity(@disabled-opacity);
+					a{
+						cursor: not-allowed;
+					}
+					.dropdown-menu{
+						display: none !important;
+					}
+				}
+			}
+		}
+	}
+	> .panel-body{
+		.compound{
+			padding-right:0;
+			padding-left: 0;
+			> .panel{
+				border-right: none;
+				border-left: none;
+			}
+		}
+	}
+}
+/* network config style */
+.ohnet-network-config{
+	.modal-body{
+		max-height:400px;
+		min-height: 250px;
+		overflow:auto;
+		position: relative;
+		&.is-loadding{
+			overflow: hidden;
+		}
+		.ohnet-loadding{
+			position: absolute;
+			background-color: #FFF;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			z-index: 10;
+			p{
+				margin:-@lh/2 0 0 0;
+				line-height: @lh;
+				position: absolute;
+				text-align: center;
+				width: 100%;
+				left: 0;
+				top: 50%;
+			}
+		}
+	}
+	.ohnet-choose-list{
+		.ohnet-wifi-item{
+			line-height: @lh;
+			cursor: pointer;
+			border-bottom: 1px dashed @bc-default;
+			&:last-child{
+				border-bottom: none;
+			}
+			p{
+				margin-bottom:0;
+			}
+			.ohnet-checked-flag{
+				display: inline-block;
+				width: 30px;
+				text-align: center;
+			}
+			.ohnet-wifi-icons{
+				.ohnet-wifi-name{
+					max-width:200px;
+					overflow:hidden;
+				}
+				.ohnet-icon{
+					padding-left:@space / 2;
+					vertical-align:middle;
+					&.icon-20{
+						font-size:20px;
+					}
+					&.link{
+						cursor: pointer;
+					}
+				}
+			}
+		}
+	}
+}

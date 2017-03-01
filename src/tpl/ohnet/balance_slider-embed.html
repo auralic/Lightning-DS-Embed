@@ -1,0 +1,27 @@
+<!-- balance slider ui compoent -->
+<div class="form-group balance-slider">
+	<label class="{{leftClass}} control-label" data-animate="fadeIn">{{translate(source.key) | translate}}</label>
+	<div class="{{rightClass}}">
+		<div class="btn-group dropdown pull-right" ng-class="{'disabled' : !source.value._editable}">
+          <button type="button" class="btn btn-default dropdown-toggle" ng-disabled="!source.value._editable" data-toggle="dropdown" data-animate="fadeIn">
+            {{text.label}}
+            <span class="caret"></span>
+          </button>
+          <div class="dropdown-menu">
+          	<div class="padder nowrap slider-contaner">
+	            <span class="pr-xs">L: {{text.leftLabel}}</span><input name="{{source._id}}" id="slider-{{source._id}}-id" ui-jq="slider" ui-options="{
+	              min: {{source.value.value_rule.balance_min}},
+	              max: {{source.value.value_rule.balance_max}},
+                tooltip : 'hide',
+	              step: 1,
+	              value: {{source.value.balance_number}}
+	            }" class="slider slider-horizontal form-control" type="text"><span class="pl-xs">R: {{text.rightLabel}}</span>
+        	</div>
+        	<div class="btns">
+        		<button class="btn btn-default cancel" ng-click="_reset()">{{ generalTranslate('reset') | translate}}</button>
+				    <button class="btn btn-primary save" ng-click="_save()">{{ generalTranslate('save') | translate}}</button>
+        	</div>
+          </div>
+        </div>
+	</div>
+</div>
