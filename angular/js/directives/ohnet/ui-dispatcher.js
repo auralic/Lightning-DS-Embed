@@ -106,7 +106,7 @@ angular.module('ohnet').directive('ohnetUiDispatcher', function ($compile, $temp
 
     _getNodeHtml : function(node, express, module, pid){
       try{
-       return '<div data-ohnet-ui-' + node._type.replace(/_/g, '-') + ' id="' + node._id + '" data-pid="' + pid + '" data-ui-type="' + node._type + '" data-node-type="regular" data-source="' + express + '" data-module="' + module + '"></div>';
+       return '<div data-ohnet-ui-' + node._type.replace(/_/g, '-') + ' id="' + node._id + '" data-pid="' + pid + '" data-ui-type="' + node._type + '" data-node-type="regular" data-source="' + express + '" data-module="' + module + '"></div><div class="line line-dashed b-b m-n pull-in"></div>';
      }catch(e){
         return '';
      }

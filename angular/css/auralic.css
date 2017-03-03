@@ -13,6 +13,7 @@ input.error:focus {
 
 .form-group {
   min-height: 34px;
+  margin-bottom: 7px;
 }
 
 .form-group div {
@@ -77,6 +78,10 @@ input.error:focus {
   white-space: nowrap;
 }
 
+.app-content-full {
+  bottom: 0;
+}
+
 .btn {
   transition: all .5s;
 }
@@ -87,6 +92,10 @@ input.error:focus {
 
 .mt {
   margin-top: 20px;
+}
+
+.fc-white {
+  color: white;
 }
 
 .mt-xs {
@@ -169,11 +178,19 @@ input.error:focus {
   white-space: nowrap;
 }
 
+#device-service-list-id li a .icon {
+  color: #869fb1;
+}
+
+#device-service-list-id li.active a .icon,
+#device-service-list-id li:hover a .icon {
+  color: #FFF;
+}
+
 /* form style */
 
 .form-horizontal.form-sm .form-group {
-  padding: 0 !important;
-  margin: 10px 0 !important;
+  margin-bottom: 7px;
 }
 
 /*  balance slider style */

@@ -11,6 +11,7 @@ input.error,input.error:focus{
 }
 .form-group{
 	min-height: 34px;
+	margin-bottom: 7px;
     div{
 		white-space: nowrap;
 	}
@@ -57,6 +58,9 @@ input.error,input.error:focus{
 .nowrap{
 	white-space: nowrap;
 }
+.app-content-full{
+	bottom: 0;
+}
 .btn{
 	transition:all .5s;
 }
@@ -65,6 +69,9 @@ input.error,input.error:focus{
 }
 .mt{
 	margin-top: @space;
+}
+.fc-white{
+	color:white;
 }
 .mt-xs{
 	margin-top: @space /2;
@@ -132,9 +139,17 @@ input.error,input.error:focus{
 
 
 #device-service-list-id{
-	li a{
-		white-space: nowrap;
-		.setTextEllipsis();
+	li {
+		a{
+			white-space: nowrap;
+			.setTextEllipsis();
+			.icon{
+				color:#869fb1;
+			}
+		}
+		&.active a .icon,&:hover a .icon{
+			color:#FFF;
+		}
 	}
 }
 
@@ -142,8 +157,7 @@ input.error,input.error:focus{
 .form-horizontal{
 	&.form-sm{
 		.form-group{
-			margin: @space /2 0 !important;
-			padding: 0 !important;
+			margin-bottom: 7px;
 		}
 	}
 }

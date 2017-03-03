@@ -19,7 +19,7 @@ angular.module('ohnet').service('ohnetDirective', function ($q, ohnetUtils, ohne
 	      pid : '@',
         compound : '=compound'
 	    }
-	}, leftClass = 'col-xs-6 text-left', rightClass = 'col-xs-6';
+	}, leftClass = 'col-xs-8 text-left', rightClass = 'col-xs-4';
 	/**
 	* 绑定动画时间
 	*/

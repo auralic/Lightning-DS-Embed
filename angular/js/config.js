@@ -1,7 +1,7 @@
 // config
 var _appConfig = {
     version : '1.0beta',
-    name : 'LDS WEB',
+    name : 'Lightning DS',
     langs : {en:'English', de:'Deutsch', zh_CN:'中文（简体）', zh_TW : '中文（繁体）'},
     dfLang : 'en'
 },
