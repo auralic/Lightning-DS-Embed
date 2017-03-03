@@ -6,6 +6,7 @@ app.controller('UiConfigCtrl', function($scope, $compile, $log, ohnetRequester, 
    // $('#ui-comment-container-id').hide();
     // 选中
     var _selected = function(){
+        ohnetRequester.changeService($stateParams.udn);
         // 先切换
         ohnetRequester.selected($stateParams.udn, $stateParams.service);
         $location.search({_lan : $rootScope._setLanguage});

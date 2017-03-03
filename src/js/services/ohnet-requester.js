@@ -89,6 +89,13 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 	};
 
 	/**
+	* 改变 服务 时触发
+	*/
+	this.changeService = function(udn){
+		_subscribeCount = 0;
+	};
+
+	/**
 	*  请求 一个 action 
 	* @param {string} serviceName 处理的服务名称
 	* @param {string} actionName 处理的action名称
