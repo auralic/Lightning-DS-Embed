@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('app')
-  .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window', 'APP_CONFIG',
-    function(              $scope,   $translate,   $localStorage,   $window , APP_CONFIG) {
+  .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window', 'APP_CONFIG', '$location', '$rootScope',
+    function(              $scope,   $translate,   $localStorage,   $window , APP_CONFIG, $location, $rootScope) {
       // add 'ie' classes to html
       var isIE = !!navigator.userAgent.match(/MSIE/i);
       if(isIE){ angular.element($window.document.body).addClass('ie');}
@@ -32,7 +32,7 @@ angular.module('app')
           asideColor: 'bg-black',
           headerFixed: true,
           asideFixed: false,
-          asideFolded: false,
+          asideFolded: true,
           asideDock: false,
           container: false
         }
@@ -58,13 +58,20 @@ angular.module('app')
       // angular translate
       $scope.lang = { isopen: false };
       $scope.langs = APP_CONFIG.langs;
-      $scope.selectLang = $scope.langs[$translate.proposedLanguage()] || APP_CONFIG.dfLang;
+      // 处理默认语言
+      $scope.selectLang = $scope.langs[$rootScope._setLanguage] || $scope.langs[$translate.proposedLanguage()];
+      if($scope._setLanguage != $translate.proposedLanguage()){
+        $translate.use($scope._setLanguage);
+      }
+      $rootScope._setLanguage = $translate.proposedLanguage();
       $scope.setLang = function(langKey, $event) {
         // set the current lang
         $scope.selectLang = $scope.langs[langKey];
         // You can change the language during runtime
         $translate.use(langKey);
         $scope.lang.isopen = !$scope.lang.isopen;
+        $location.search({_lan : langKey});
+        $rootScope._setLanguage = langKey;
       };
 
       function isSmartDevice( $window )

@@ -2,8 +2,8 @@
 var _appConfig = {
     version : '1.0beta',
     name : 'LDS WEB',
-    langs : {en:'English', de_DE:'German', it_IT:'Italian'},
-    dfLang : 'English'
+    langs : {en:'English', de:'Deutsch', zh_CN:'中文（简体）', zh_TW : '中文（繁体）'},
+    dfLang : 'en'
 },
 
 _ohnetProxy = {
@@ -29,7 +29,7 @@ angular.module('app')
         app.value      = $provide.value;
     }
   ])
-  .config(['$translateProvider', function($translateProvider){
+  .config(['$translateProvider', '$locationProvider', function($translateProvider, $locationProvider){
     // Register a loader for the static files
     // So, the module will search missing translation tables under the specified urls.
     // Those urls are [prefix][langKey][suffix].
@@ -38,7 +38,7 @@ angular.module('app')
       suffix: '.js?_v=' + _appConfig.version
     });
     // Tell the module what language to use by default
-    $translateProvider.preferredLanguage('en');
+    $translateProvider.preferredLanguage(_appConfig.dfLang);
     // Tell the module to store the language in the local storage
     $translateProvider.useLocalStorage();
   }]).constant('APP_VERSION', _appConfig.version).constant('APP_CONFIG', _appConfig).constant('OHNET_PROXY', _ohnetProxy);

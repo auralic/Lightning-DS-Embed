@@ -25,7 +25,11 @@
 .color-schema(@bg-color: #555, @percent: 15%, @sat-percent){
   background-color: saturate(darken(@bg-color, @percent), @sat-percent);
 }
-
+.setTextEllipsis(){
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
 .font-variant(@bg-color){
 	@font-color:  desaturate(lighten(@bg-color,40%), 10%);
   @link-color:  desaturate(lighten(@bg-color,50%), 10%);

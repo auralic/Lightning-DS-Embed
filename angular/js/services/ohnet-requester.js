@@ -24,10 +24,13 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 	_isPending = false,
 	// 订阅最大连续失败次数
 	_maxSubscribeErrorTime = 3,
+	// 订阅次数，用于区分是否第一次订阅
+	_subscribeCount = 0, 
 	// 订阅当前连续失败次数
 	_subscribeErrorTime = 0,
 	// 获取设备 信息最大失败次数
-	_maxGetTime = 3
+	_maxGetTime = 3,
+	_cachedDeviceResponse
 	;
 
 	var _utils = {
@@ -74,11 +77,10 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 		var _def = $q.defer();
 		 $http.get(url, {timeout : 2000}).then(function(response){
 		 	var _data = ohnetParser.parser(response.data);
-		 	$log.debug('devie is %o', _data);
 		 	if(angular.isUndefined(_data.root) || angular.isUndefined(_data.root.device)){
 		 		_def.reject(response);	
 		 	}else{
-		 		_def.resolve(_data);
+		 		_def.resolve(_data, response);
 		 	}
 		 }).catch(function(m){
 		 	_def.reject(m);
@@ -364,7 +366,7 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 	* @param {string} serviceName 服务名称
 	* @return {promise} 延迟对象
 	*/
-	this.selected = function(udn, serviceName, scope){
+	this.selected = function(udn, serviceName){
 		// 检查之前的订阅是否存在
 		var isSub = !ohnetSubscription.isRunning(udn);
 		ohnetSubscription.restart(udn);
@@ -403,6 +405,7 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 				serviceName : serviceName
 			};
 			ohnetObservable.broadcast('selected-device', udn);
+			$log.debug('broadcast selected-device');
 			// 设置订阅
 			ohnetSubscription.set(udn, _dev.host, serviceName, _dev.port);
 			ohnetDevice.selected(udn);
@@ -451,6 +454,9 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 			_def.reject('device is pending');
 			return _def.promise;
 		}
+		var _oldSub = _subscribes;
+		// 每设置一次 ，则重置订阅次数，以便于区分是自己变更导致的刷新，还是其他客户端变更导致的刷新
+		_subscribes = 0;
 		udn = angular.isUndefined(udn) ? _nowDevice.device.udn : udn;
 		serviceName = angular.isUndefined(serviceName) ? _nowDevice.serviceName : serviceName;
 		this.set(xmlData, udn, serviceName);
@@ -458,6 +464,7 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 		window.setTimeout(function(){
 			_delayRequestCheck(udn, serviceName, $q.defer()).then(function(){
 				_isPending = false;
+				_subscribes = _oldSub;
 			});
 			_def.resolve();
 		}, 1000);
@@ -505,6 +512,13 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 	    return _def.promise;
 	};
 
+	/**
+	* 是否上一次未处理完的待处理状态
+	* @return {boolean} true 是，false 不是
+	*/
+	this.isPending = function(){
+		return _isPending;
+	};
 
 	/**
 	* 定时向当前选中的设备发送特定请求
@@ -613,6 +627,12 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 					});
 				});
 			});
+			// 如果不是第一次，则重新选择
+			if(_subscribeCount > 0){
+				// 重新选择一次
+				_that.selected(_info.udn, _info.serviceName);
+			}
+			_subscribeCount ++;
 		});
 	};
 
@@ -716,7 +736,13 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 			return;
 		}
 		window.setTimeout(function(){
-			_that.deviceInfo(ohnetThread.getLocalHost()).then(function(){
+			_that.deviceInfo(ohnetThread.getLocalHost()).then(function(data, response){
+				if(angular.isUndefined(_cachedDeviceResponse)){
+					_cachedDeviceResponse = response;
+				}else if(response != _cachedDeviceResponse){
+					// 如果不一致，则认为有新的服务，直接刷新
+					ohnetUtils.reload();
+				}
 				_startCheckDeviceStatusErrorTimes = 0;
 				_startCheckDeviceStatus();
 			}).catch(function(){
@@ -751,7 +777,6 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 						_def.reject();
 					});
 				}
-				
 			}).catch(function(){
 				_def.reject();
 			});

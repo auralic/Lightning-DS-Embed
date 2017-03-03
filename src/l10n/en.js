@@ -264,6 +264,7 @@
   },
   "network-config" : {
     "set-wireless-title" : "Wireless Config",
+    "error-title" : "Network config is error!",
     "set-wireless-loadding" : "Searching network ....",
     "set-wireless-choosen-title" : "Choose a network",
     "set-wireless-next":"Next",
@@ -277,6 +278,9 @@
     "ip-settings-password-placeholder" : "Please enter network password",
     "ip-settings-password-show" : "Show Password",
     "ip-settings-security" : "Security",
+    "ip-settings-encryption-mode-None":"None",
+    "ip-settings-encryption-mode-WEP":"WEP",
+    "ip-settings-encryption-mode-WPA2":"WPA2",
     "ip-settings-dhcp" : "DHCP",
     "ip-settings-ip" : "IP Address",
     "ip-settings-ip-placeholder" : "Please enter network ip address",

@@ -1,29 +1,13 @@
 <!-- list -->
-<ul class="nav" ng-controller="UiNavContrl">
+<ul class="nav" id="device-service-list-id" ng-controller="UiNavContrl">
   <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
     <span translate="nav.devices">Device List</span>
   </li>
   <li ng-repeat="d in devices" ui-sref-active="active">
-    <a href class="auto" ui-sref="{{d.uri}}">
-      <!-- <span class="pull-right text-muted">
-        <i class="fa fa-fw fa-angle-right text"></i>
-        <i class="fa fa-fw fa-angle-down text-active"></i>
-      </span> -->
+    <a href class="auto" ui-sref="{{d.uri}}" title="{{translate(d.name) | translate}}">
       <i class="icon text-primary-dker" ng-class="{'fa fa-desktop': !d.isServer, 'fa fa-video-camera': d.isServer}"></i>
       <span class="font-bold">{{translate(d.name) | translate}}</span>
     </a>
-    <!-- <ul class="nav nav-sub dk">
-      <li class="nav-sub-header">
-        <a href>
-         <span class="font-bold">{{d.name}}</span>
-        </a>
-      </li>
-      <li ui-sref-active="active" ng-repeat="s in d.services">
-          <a ui-sref="{{s.uri}}">
-            <span>{{translate(s.name) | translate}}</span>
-          </a>
-      </li>
-    </ul> -->
   </li>
   
 </ul>

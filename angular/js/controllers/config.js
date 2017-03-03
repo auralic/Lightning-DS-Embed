@@ -1,25 +1,14 @@
-app.controller('UiConfigCtrl', function($scope, $compile, $log, ohnetRequester, $q, $stateParams, ohnetObservable, ohnetNodes, $http) {
+app.controller('UiConfigCtrl', function($scope, $compile, $log, ohnetRequester, $q, $stateParams, ohnetObservable, ohnetNodes, $http, $location, $rootScope) {
     var element = angular.element('#ui-config-container-id');
     // 初始化一个延迟对象
     var backDef = $q.defer();
     $('#refresh-loading-mask-id,#refresh-loading-id').finish().show();
-    $('#ui-comment-container-id').hide();
+   // $('#ui-comment-container-id').hide();
     // 选中
     var _selected = function(){
         // 先切换
-        ohnetRequester.selected($stateParams.udn, $stateParams.service).then(function(){
-            ohnetRequester.get().then(function(xmlSource){
-                $log.debug('source is %o', xmlSource);
-                $scope.xmlSource = xmlSource;
-                // 设置内容
-                element.html('<div class="wrapper-md" ohnet-ui-dispatcher data-source="xmlSource" data-module="server"></div>');
-                // 动态编译
-                $compile(element.contents())($scope);
-                backDef.resolve();
-            }).catch(function(){
-                _refresh();
-            });
-        });
+        ohnetRequester.selected($stateParams.udn, $stateParams.service);
+        $location.search({_lan : $rootScope._setLanguage});
     };
     // 刷新
     var _refresh = function(){
@@ -30,8 +19,18 @@ app.controller('UiConfigCtrl', function($scope, $compile, $log, ohnetRequester, 
     ohnetObservable.remove('selected-device');
     ohnetObservable.add('selected-device', function(){
         window.setTimeout(function(){
+             ohnetRequester.get().then(function(xmlSource){
+                $scope.xmlSource = xmlSource;
+                // 设置内容
+                element.html('<div class="wrapper-md" ohnet-ui-dispatcher data-source="xmlSource" data-module="server"></div>');
+                // 动态编译
+                $compile(element.contents())($scope);
+                backDef.resolve();
+            }).catch(function(){
+                _refresh();
+            });
             $('#refresh-loading-mask-id,#refresh-loading-id').fadeOut(500);
-            $('#ui-comment-container-id').fadeOut(500);
+            //$('#ui-comment-container-id').fadeIn(500);
         }, 100);
     });
     //先选中一个

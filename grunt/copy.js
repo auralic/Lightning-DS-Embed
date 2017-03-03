@@ -118,7 +118,9 @@ module.exports = {
     },
     angular: {
         files: [
-            {expand: true, src: ['**', '!**/less/**'], cwd: 'src/',   dest: "angular/"}
+            {expand: true, src: ['**', '!**/less/**'], cwd: 'src/',   dest: "angular/"},
+            {expand: true, src: ['**'], cwd: 'libs/requires',   dest: "angular/js/requires"},
+            {expand: true, src: ['**'], cwd: 'libs/assets',   dest: "angular/assets"}
         ]
     }
 

@@ -5,10 +5,14 @@
  */
 angular.module('app')
   .run(
-    [          '$rootScope', '$state', '$stateParams',
-      function ($rootScope,   $state,   $stateParams) {
+    [          '$rootScope', '$state', '$stateParams', '$location', 'APP_CONFIG',
+      function ($rootScope,   $state,   $stateParams, $location, APP_CONFIG) {
           $rootScope.$state = $state;
-          $rootScope.$stateParams = $stateParams;        
+          $rootScope.$stateParams = $stateParams;
+          // 如果url语言存在，则默认使用此url语言
+          if(!angular.isUndefined($location.search()._lan) && !angular.isUndefined(APP_CONFIG.langs[$location.search()._lan])){
+            $rootScope._setLanguage = $location.search()._lan;
+          }
       }
     ]
   )

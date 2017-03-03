@@ -11,6 +11,15 @@ input.error,input.error:focus{
 }
 .form-group{
 	min-height: 34px;
+    div{
+		white-space: nowrap;
+	}
+	.dropdown-menu li{
+		white-space: nowrap;
+	}
+	button,.control-label{
+		.setTextEllipsis();
+	}
 	.control-label{
 		line-height: @lh;
 		padding-top: 0 !important;
@@ -118,6 +127,14 @@ input.error,input.error:focus{
 	}
 	.comment-3{
 		text-indent: 4em;
+	}
+}
+
+
+#device-service-list-id{
+	li a{
+		white-space: nowrap;
+		.setTextEllipsis();
 	}
 }
 

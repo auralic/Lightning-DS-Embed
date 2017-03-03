@@ -41,13 +41,13 @@ angular.module('ohnet').service('ohnetThread', ['OHNET_PROXY','$log', function (
 	* @return {string} 具体的ip/hostname 如 192.168.1.1
 	*/
 	this.getLocalIP = function(){
-		//return window.location.hostname;
-		return '192.168.1.22';
+		return window.location.hostname;
+		//return '192.168.1.55';
 	};
 
 	// 获取远程ip的地址
 	this.getReprotHost = function(sn){
-		return 'http://localhost:8081/v1.0/ldsDevice/' + sn + '/getip.htm';
+		return 'https://eu-central-1.report.auralic.com/v1.0/ldsDevice/' + sn + '/getip.htm';
 	};
 
 	/**

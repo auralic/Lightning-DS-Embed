@@ -103,6 +103,7 @@
     "group_device_name" : "设备名称"
   },
   "network-config" : {
+    "error-title" : "设置网络失败，请稍后重试",
     "set-wireless-title" : "无线网络配置",
     "set-wireless-loadding" : "正在查找可用无线网络 ....",
     "set-wireless-choosen-title" : "请选择一个无线网",
@@ -117,6 +118,9 @@
     "ip-settings-password-placeholder" : "请输入密码",
     "ip-settings-password-show" : "显示密码",
     "ip-settings-security" : "加密方式",
+    "ip-settings-encryption-mode-None":"无",
+    "ip-settings-encryption-mode-WEP":"WEP",
+    "ip-settings-encryption-mode-WPA2":"WPA2",
     "ip-settings-dhcp" : "DHCP",
     "ip-settings-ip" : "IP 地址",
     "ip-settings-ip-placeholder" : "请输入IP地址",

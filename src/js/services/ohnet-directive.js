@@ -79,7 +79,6 @@ angular.module('ohnet').service('ohnetDirective', function ($q, ohnetUtils, ohne
         }
       });
       element.on('$destroy', function () {
-        $log.debug('%o  is destroy', _eltId);
         if(_eltId != 'gateway'){
           scope.$destroy();
         }

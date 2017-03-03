@@ -6,12 +6,11 @@
   <meta name="description" content="Angularjs, Html5, Music, Landing, 4 in 1 ui kits package" />
   <meta name="keywords" content="AngularJS, angular, bootstrap, admin, dashboard, panel, app, charts, components,flat, responsive, layout, kit, ui, route, web, app, widgets" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <link rel="stylesheet" href="../libs/assets/animate.css/animate.css" type="text/css" />
-  <link rel="stylesheet" href="../libs/assets/font-awesome/css/font-awesome.min.css" type="text/css" />
-  <link rel="stylesheet" href="../libs/assets/simple-line-icons/css/simple-line-icons.css" type="text/css" />
-  <link rel="stylesheet" href="../libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
-  
+  <link rel="stylesheet" href="assets/animate.css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="assets/simple-line-icons/css/simple-line-icons.css" type="text/css" />
   <!-- build:css css/app.min.css -->
+  <link rel="stylesheet" href="../libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
   <link rel="stylesheet" href="css/font.css" type="text/css" />
   <link rel="stylesheet" href="css/app.css" type="text/css" />
   <link rel="stylesheet" href="css/auralic.css" type="text/css" />
@@ -29,7 +28,7 @@
   <script src="../libs/utf8.js"></script>
  <!-- Required ohNet js files.  You may wish to minify and combine these into one file. -->
 <script src="../libs/openhome/jQuery.XDomainRequest.js" type="text/javascript"></script>
-<!-- endbuild -->
+
 <script src="../libs/openhome/ohnet/ohnet.util.js" type="text/javascript"></script>
 <script src="../libs/openhome/ohnet/ohnet.base64.js" type="text/javascript"></script>
 <script src="../libs/openhome/ohnet/ohnet.subscriptionmanager.js" type="text/javascript"></script>
@@ -45,9 +44,9 @@
 <script src="../libs/openhome/proxy/CpAvOpenhomeOrgServerConfig1.js" type="text/javascript"></script>
 <script src="../libs/openhome/proxy/CpAvOpenhomeOrgWebProcessorConfig1.js" type="text/javascript"></script>
 
+<!-- endbuild -->
 
-
-  
+  <!-- build:js js/app.angular.js -->
   <!-- Bootstrap -->
   
   <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
@@ -75,12 +74,16 @@
   <!-- -->
   <script src="../libs/auralic/spin/spin.js"></script>
   <script src="../libs/auralic/spin/angular-spinner.js"></script>
+  <!-- endbuild -->
+  <!-- build:js js/app.js -->
   <!-- App -->
   <script src="js/app.js"></script>
   <script src="js/config.js"></script>
   <script src="js/config.lazyload.js"></script>
   <script src="js/config.router.js"></script>
   <script src="js/main.js"></script>
+  <!-- endbuild -->
+  
   <script src="js/services/ui-load.js"></script>
   <script src="js/services/ohnet.js"></script>
   <script src="js/services/ohnet-tip.js"></script>
@@ -96,6 +99,7 @@
   <script src="js/services/ohnet-pop-menu.js"></script>
   <script src="js/services/ohnet-thread.js"></script>
   <script src="js/services/ohnet-observable.js"></script>
+
   <script src="js/filters/fromNow.js"></script>
   <script src="js/directives/setnganimate.js"></script>
   <script src="js/directives/ui-butterbar.js"></script>
@@ -119,6 +123,7 @@
   <script src="js/directives/ohnet/ui-group-menu-item.js"></script>
   <script src="js/directives/ohnet/ui-pop-menu.js"></script>
   <script src="js/directives/ohnet/ui-condition.js"></script>
+  
   <!-- Lazy loading -->
 </body>
 </html>

@@ -5,7 +5,7 @@
  * ohnet  network 设置服务
  */
 
-angular.module('ohnet').service('ohnetNetwork', function (OHNET_PROXY, $log, $q, $rootScope, $compile, ohnetRequester, ohnetSubscription, ohnetDevice, ohnetParser, ohnetUtils) {
+angular.module('ohnet').service('ohnetNetwork', function (OHNET_PROXY, $log, $q, $rootScope, $compile, ohnetRequester, ohnetSubscription, ohnetDevice, ohnetParser, ohnetUtils, ohnetTip, ohnetThread) {
 
 	var _$element, _scope, _namespace = 'ohnet-network', _speed = 500,
 	_domHtml = '<div class="modal fade ohnet-network-config"><div class="modal-dialog"><div class="modal-content"></div></div></div>',
@@ -19,6 +19,10 @@ angular.module('ohnet').service('ohnetNetwork', function (OHNET_PROXY, $log, $q,
 	* @return {Promise} 延迟对象
 	*/
 	this.switchTo = function(id){
+        if(ohnetRequester.isPending()){
+            ohnetTip.tip('general.tip_error_title', 'general.device_pending');
+            return;
+        }
 		// 获取 一个 延迟对象
 		var _def = $q.defer();
         // 初始化一下
@@ -28,6 +32,7 @@ angular.module('ohnet').service('ohnetNetwork', function (OHNET_PROXY, $log, $q,
         _def.promise.then(function(){
             _destroy();
         }, function(){
+            //ohnetTip.tip('general.tip_error_title', 'network-config.error-title');
             _destroy();
             _cachedData = undefined;
         });
@@ -55,6 +60,10 @@ angular.module('ohnet').service('ohnetNetwork', function (OHNET_PROXY, $log, $q,
     * 销毁
     */
     function _destroy(){
+        // 如果没关闭，这里先关闭一下
+        if(!_$element.hasClass('fade')){
+            _$element.addClass('fade');
+        }
     	_$element.find('.modal-content').html('');
     	if(!angular.isUndefined(_scope)){
             _scope.$destroy();
@@ -166,6 +175,11 @@ angular.module('ohnet').service('ohnetNetwork', function (OHNET_PROXY, $log, $q,
                             return;
                         }
                         var _data = ohnetParser.parser(xmlSource), _method;
+                        // 检查 wifi 列表是否存在，由于 server 设备 会返回 空 list 的 数据，这里过滤一下，如果hi空的则直接忽略本次
+                        if(angular.isUndefined(_data.root.group) || angular.isUndefined(_data.root.group.node)){
+                            _lastLadded = true;
+                            return;
+                        }
                         _scope.source.wifis = [];
                         // 当前选中的元素是否在列表中
                         var _isExisit = false;
@@ -215,9 +229,12 @@ angular.module('ohnet').service('ohnetNetwork', function (OHNET_PROXY, $log, $q,
                         });
                         
                         ohnetUtils.apply(_scope);
-                        _$element.find('.ohnet-loadding').fadeOut(_speed);
+                        ohnetThread.asynch(function(){
+                            _$element.find('.ohnet-loadding').fadeOut(_speed);
+                        });
                         _lastLadded = true;
                     }).catch(function(e){
+                        $log.debug('load wifi is error %o', e);
                         _lastLadded = true;
                         def.reject(e);
                     });
@@ -275,7 +292,6 @@ angular.module('ohnet').service('ohnetNetwork', function (OHNET_PROXY, $log, $q,
             },
             _step02 : function(def){
                 var _that = this;
-                $log.debug('encryption is %o', _cachedData.encryption);
                 _switchTypes.settings({
                     title : 'network-config.set-wireless-title',
                     loadding : _that.loaddingText['03'],
@@ -327,8 +343,8 @@ angular.module('ohnet').service('ohnetNetwork', function (OHNET_PROXY, $log, $q,
             _html.push('<div class="form-group" ng-show="source.ssid == undefined"><label class="col-xs-5 control-label text-left">{{\'network-config.ip-settings-ssid\' | translate}}</label><div class="col-xs-7"><input type="text" class="form-control" ng-class="{\'error\' : wifiConfig.wifi_ssid.$invalid && wifiConfig.wifi_ssid.$dirty}" name="wifi_ssid" id="wifi_ssid" ng-model="model.wifi_ssid" maxlength="128" required placeholder="{{\'network-config.ip-settings-ssid-placeholder\' | translate}}"/></div></div>');
             // 加密方式
             _html.push('<div class="form-group" ng-show="source.ssid == undefined"><label class="col-xs-5 control-label  text-left">{{ \'network-config.ip-settings-security\'| translate }}</label><div class="col-xs-7"><div class="btn-group dropdown pull-right">');
-            _html.push('<button type="button" class="btn btn-default" data-toggle="dropdown" data-animate="fadeIn">{{source.currentEncryption}}<span class="caret"></span></button>');
-            _html.push('<ul class="dropdown-menu"><li ng-repeat="o in encryptions" ng-click="source.currentEncryption=o;model.encryption_type=o;" data-opt-id="{{o}}"><a href="javascript:void(0)">{{o}}</a></li></ul>');
+            _html.push('<button type="button" class="btn btn-default" data-toggle="dropdown" data-animate="fadeIn"><span class="pr-xs" translate="network-config.ip-settings-encryption-mode-{{source.currentEncryption}}"></span><span class="caret"></span></button>');
+            _html.push('<ul class="dropdown-menu"><li ng-repeat="o in encryptions" ng-click="source.currentEncryption=o;model.encryption_type=o;" data-opt-id="{{o}}"><a href="javascript:void(0)" translate="network-config.ip-settings-encryption-mode-{{o}}"></a></li></ul>');
             _html.push('</div></div></div>');
             //if(angular.isUndefined(data.ssid) || data.encryption){
             // 密码

@@ -7,10 +7,10 @@ angular.module('app')
    * value: array of the css js file located
    */
   .constant('JQ_CONFIG', {
-      slider:         [   '../libs/jquery/bootstrap-slider/bootstrap-slider.js?a=b',
-                          '../libs/jquery/bootstrap-slider/bootstrap-slider.css'],
-      screenfull:     [   '../libs/jquery/screenfull/dist/screenfull.min.js'],
-      x2js : ['../libs/auralic/xml2json/xml2json.js']
+      slider:         [   'js/requires/bootstrap-slider/bootstrap-slider.js?a=b',
+                          'js/requires/bootstrap-slider/bootstrap-slider.css'],
+      screenfull:     [   'js/requires/screenfull/dist/screenfull.min.js'],
+      x2js : ['js/requires/xml2json/xml2json.js']
                       
     }
   )

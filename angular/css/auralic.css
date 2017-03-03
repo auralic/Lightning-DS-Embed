@@ -15,6 +15,21 @@ input.error:focus {
   min-height: 34px;
 }
 
+.form-group div {
+  white-space: nowrap;
+}
+
+.form-group .dropdown-menu li {
+  white-space: nowrap;
+}
+
+.form-group button,
+.form-group .control-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .form-group .control-label {
   padding-top: 0 !important;
   line-height: 34px;
@@ -146,6 +161,12 @@ input.error:focus {
 
 #ui-comment-container-id .comment-3 {
   text-indent: 4em;
+}
+
+#device-service-list-id li a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* form style */

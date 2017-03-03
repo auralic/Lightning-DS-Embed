@@ -44,6 +44,11 @@ angular.module('ohnet').service('ohnetObservable', function ($q, ohnetUtils,$log
     if(angular.isUndefined(_list)){
       return false;
     }
+    // 如果 id 不存在，则全部删除
+    if(angular.isUndefined(id)){
+      delete _observers[name];
+      return true;
+    }
     if(angular.isUndefined(_list[_eventName + id])){
       return false;
     }
