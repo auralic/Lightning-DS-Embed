@@ -170,12 +170,12 @@ angular.module('ohnet').service('ohnetSubscription',function ($document, $q, $ti
 		var _isStop = angular.isUndefined(_manager) || !_that.isRunning();
 		$log.debug('检查 订阅状态%o', (_isStop ? '停止' : '运行'));
 		if(_isStop){
-			$log.debug('开始重新启动订阅');
 			_that.stop();
-			// 咱们重新启动一下
-			_that.start().then(function(){
-				ohnetObservable.broadcast('subscription-start', _info.udn);
-			});
+            $log.debug('开始重新启动订阅');
+            // 咱们重新启动一下
+            _that.start().then(function () {
+                ohnetObservable.broadcast('subscription-start', _info.udn);
+            });
 		}
 	};
 

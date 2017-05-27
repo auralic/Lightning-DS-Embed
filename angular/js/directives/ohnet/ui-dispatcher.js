@@ -30,7 +30,7 @@ angular.module('ohnet').directive('ohnetUiDispatcher', function ($compile, $temp
         // pop-menu 节点
         if(!angular.isUndefined(source.root.pop_menu)){
             ohnetUtils.forEach(source.root.pop_menu, function(o, i){
-              _html.push('<div data-ohnet-ui-pop-menu id="' + o._id + '"  data-ui-type="pop-menu" data-node-type="regular" data-source="' + 'source.root.pop_menu' + ohnetUtils.getExpressIndex(i) + '" data-module="' + module + '"></div>');
+              _html.push('<div data-ohnet-ui-pop-menu class="ohnet-ui-pop-menu-div" id="' + o._id + '"  data-ui-type="pop-menu" data-node-type="regular" data-source="' + 'source.root.pop_menu' + ohnetUtils.getExpressIndex(i) + '" data-module="' + module + '"></div>');
             });
         }
 
@@ -106,7 +106,7 @@ angular.module('ohnet').directive('ohnetUiDispatcher', function ($compile, $temp
 
     _getNodeHtml : function(node, express, module, pid){
       try{
-       return '<div data-ohnet-ui-' + node._type.replace(/_/g, '-') + ' id="' + node._id + '" data-pid="' + pid + '" data-ui-type="' + node._type + '" data-node-type="regular" data-source="' + express + '" data-module="' + module + '"></div><div class="line line-dashed b-b m-n pull-in"></div>';
+       return '<div class="ohnet-ui-' + node._type.replace(/_/g, '-') + '-div" data-ohnet-ui-' + node._type.replace(/_/g, '-') + ' id="' + node._id + '" data-pid="' + pid + '" data-ui-type="' + node._type + '" data-node-type="regular" data-source="' + express + '" data-module="' + module + '"></div><div class="line line-dashed b-b m-n pull-in"></div>';
      }catch(e){
         return '';
      }

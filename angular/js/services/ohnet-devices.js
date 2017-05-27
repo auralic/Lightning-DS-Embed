@@ -7,7 +7,7 @@
 
 angular.module('ohnet').service('ohnetDevice',  function ($document, $q, $timeout, $cacheFactory, ohnetUtils, $log, ohnetThread, ohnetObservable) {
 
-	var _cachedName = 'ohnet-device', _that = this, _nowSelectUdn, _currentDeviceSn;
+	var _cachedName = 'ohnet-device', _that = this, _nowSelectUdn, _currentDeviceSn, _lastSelected;
 
 	var _utils = {
 		getCached : function(){
@@ -101,6 +101,15 @@ angular.module('ohnet').service('ohnetDevice',  function ($document, $q, $timeou
 		return _utils.getCached().get(udn);
 	};
 
+    /**
+	 * 当前列表中是否有此udn
+	 * @param udn 要检查的udn
+     * @return {boolean}
+     */
+	this.contains = function(udn){
+		return !angular.isUndefined(this.get(udn));
+	};
+
 	/**
 	* 获取第一个设备信息
 	* @return {object} 返回设备信息
@@ -146,6 +155,14 @@ angular.module('ohnet').service('ohnetDevice',  function ($document, $q, $timeou
 			_nowSelectUdn = udn;
 		}
 		return angular.isUndefined(_nowSelectUdn) ? undefined : this.get(_nowSelectUdn); 
+	};
+
+    /**
+	 * 获取最后一次选中的udn
+     * @return {*}
+     */
+	this.getLastSelected = function(){
+		return _lastSelected;
 	};
 
 	/**

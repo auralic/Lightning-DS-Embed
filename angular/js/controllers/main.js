@@ -1,4 +1,4 @@
-app.controller('UiNavContrl',function($scope, ohnetParser, $http, $compile, $log, ohnetRequester, ohnetThread, ohnetUtils, $q, ohnetDevice, $state, ohnetObservable, APP_CONFIG) {
+app.controller('UiNavContrl',function($scope, ohnetParser, $http, $compile, $log, ohnetRequester, ohnetThread, ohnetSubscription, ohnetUtils, $q, ohnetDevice, $state, ohnetObservable, APP_CONFIG) {
     var df2 = $q.defer();
     $('title').text(APP_CONFIG.name + ' | ' + ohnetThread.getLocalIP());
     // 获取 设备列表
@@ -25,6 +25,27 @@ app.controller('UiNavContrl',function($scope, ohnetParser, $http, $compile, $log
             refresh();
         });
     });
+    // 添加一个 实时刷新左侧列表的监听服务
+    setInterval(function(){
+        ohnetRequester.refreshDevice().then(function(data){
+            // 检查获取的设备列表是否有 当前 udn
+            var _selected = ohnetSubscription.info();
+            if(angular.isUndefined(_selected)){
+                return false;
+            }
+            // 如果当前设备不存在，则认为其已经掉线
+            if(!ohnetDevice.contains(_selected.udn)){
+                // 掉线
+                ohnetRequester.offline();
+            }else{
+                // 如果是掉线，则重新选中，并订阅
+                if(ohnetRequester.isOffline()){
+
+                    ohnetRequester.selected(_selected.udn, _selected.serviceName);
+                }
+            }
+        });
+    }, 5000);
 
     function refresh(){
         $scope.devices = [];

@@ -5,7 +5,7 @@
     </div>
     <ul class="dropdown-menu">
       <li ng-repeat="o in source.menu.node" data-id="{{o._id}}" ng-class="{'disabled':o._disabled==1}">
-          <div data-ohnet-ui-group-menu-item data-source="o" data-ui-type="group-menu-item" data-module="{{module}}" data-node-type="regular"></div>
+          <div data-ohnet-ui-group-menu-item data-source="o" data-id="{{o._id}}" data-ui-type="group-menu-item" data-module="{{module}}" data-node-type="regular"></div>
       </li>
     </ul>
 </div>

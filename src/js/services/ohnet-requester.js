@@ -192,6 +192,17 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 		// }
 	};
 
+    /**
+	 * 让当前设备掉线
+     */
+	this.offline = function(){
+		_isOffline = true;
+        // 设置订阅中的设备状态
+        ohnetSubscription.isOffline(_isOffline);
+        // 清空订阅
+		this.clearSubscription();
+	};
+
 
 	/**
 	* 初始化一个 服务
@@ -590,10 +601,14 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 			}
 		});
 	};
-
 	// 重新订阅特定服务
 	var _resubscription = function(udn){
-		$log.debug('重新订阅');
+		// 检查 udn 是否存在于 device list 中，如果存在才重新订阅
+		if(angular.isUndefined(ohnetDevice.get(udn))){
+            _isOffline = true;
+			return;
+		}
+        $log.debug('重新订阅');
 		// 重新订阅 服务
 		// 获取当前 service
 		var _info = ohnetSubscription.info();

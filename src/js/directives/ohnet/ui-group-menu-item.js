@@ -7,7 +7,7 @@ angular.module('ohnet').directive('ohnetUiGroupMenuItem', ['$compile', '$templat
           return false;
         }
       	warning(scope.source, function(){
-          change(Math.random());
+          change(Math.random(), undefined, true);
         });
       };
 
@@ -31,7 +31,10 @@ angular.module('ohnet').directive('ohnetUiGroupMenuItem', ['$compile', '$templat
       };
       // 来个特殊元素，走起
       scope._pop_button = function(){
-        ohnetNetwork.switchTo(scope.source._id);
+          warning(scope.source, function(){
+              ohnetNetwork.switchTo(scope.source._id);
+          });
+
       }
       return false;
     }
