@@ -186,12 +186,12 @@ angular.module('ohnet').service('ohnetUtils',function ($q, OHNET_PROXY, $log, $t
     		return '';
     	}
     	// 如果元素存在，这里为了处理 动态 directive 生成的静态元素
-    	// if(!angular.isUndefined($element)){
-    	// 	$element.on('click', '[ui-scroll-to]', function(){
-    	// 		$location.hash($(this).attr('ui-scroll-to'));
-         //  		$anchorScroll();
-    	// 	});
-    	// }
+    	if(!angular.isUndefined($element) && !this.isMobileDevice()){
+    		$element.on('click', '[ui-scroll-to]', function(){
+    			$location.hash($(this).attr('ui-scroll-to'));
+          		$anchorScroll();
+    		});
+    	}
     	return '<a ui-scroll-to="comment-' + node._id + '-id" class="comment-icon"><span class="icon-info"></span></a>';
     };
 
