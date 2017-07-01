@@ -2,7 +2,6 @@ app.controller('UiNavContrl',function($scope, ohnetParser, $http, $compile, $log
     var df2 = $q.defer();
     $('title').text(APP_CONFIG.name + ' | ' + ohnetThread.getLocalIP());
     // 获取 设备列表
-
     ohnetRequester.refreshDevice().then(function(data){
         // 添加  translateCode 函数
       $scope.translate = function(o){

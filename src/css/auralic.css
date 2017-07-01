@@ -420,3 +420,9 @@ input.error:focus {
 .ohnet-network-config .ohnet-choose-list .ohnet-wifi-item .ohnet-wifi-icons .ohnet-icon.link {
   cursor: pointer;
 }
+
+.ohnet-ui-pop-menu-div .modal {
+  position: fixed !important;
+  z-index: 2000 !important;
+  -webkit-transform: translateZ(2000);
+}

@@ -348,7 +348,7 @@ angular.module('ohnet').service('ohnetNetwork', function (OHNET_PROXY, $log, $q,
             _html.push('</div></div></div>');
             //if(angular.isUndefined(data.ssid) || data.encryption){
             // 密码
-            _html.push('<div class="form-group" ng-show="source.currentEncryption != \'None\' || source.encryption == \'on\'"><label class="col-xs-5 control-label  text-left">{{\'network-config.ip-settings-password\' | translate}}</label><div class="col-xs-7"><input type="{{cached.passwordType}}" class="form-control"  maxlength="32" minlength="1" name="password" ng-model="model.wifi_password" placeholder="{{\'network-config.ip-settings-password-placeholder\' | translate}}"/></div></div>');
+            _html.push('<div class="form-group" ng-show="source.currentEncryption != \'None\' || source.encryption == \'on\'"><label class="col-xs-5 control-label  text-left">{{\'network-config.ip-settings-password\' | translate}}</label><div class="col-xs-7"><input type="{{cached.passwordType}}" class="form-control"  maxlength="128" minlength="1" name="password" ng-model="model.wifi_password" placeholder="{{\'network-config.ip-settings-password-placeholder\' | translate}}"/></div></div>');
             // 是否显示密码
             _html.push('<div class="form-group" ng-show="source.currentEncryption != \'None\'  || source.encryption == \'on\'"><label class="col-xs-5 control-label  text-left">{{\'network-config.ip-settings-password-show\' | translate}}</label><div class="col-xs-7"><label class="i-switch bg-info m-t-xs pull-right"><input type="checkbox" ng-model="cached.passwordType" name="passwordType" ng-true-value="\'text\'" ng-false-value="\'password\'"><i></i></label></div></div>');
             //}

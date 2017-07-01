@@ -43,6 +43,7 @@ angular.module('ohnet').service('ohnetPopMenu', ['$document', '$q', '$timeout', 
 		for(var i = 0;i < _pops.length;i ++){
 			_t = _pops[i];
 			if(_t.id == id){
+                _t.element.find('.modal').modal('hide');
 				_pops.splice(i, 1);
 				return true;
 			}
