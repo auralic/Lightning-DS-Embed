@@ -40,7 +40,7 @@ angular.module('ui.load', [])
 		 * @returns {*} Promise that will be resolved once the script has been loaded.
 		 */
 		this.loadScript = function (src) {
-			src = src + '?_v=' + APP_VERSION;
+			src = src + '?_v=' + (new Date()).getTime();
 			if(loaded[src]) return loaded[src].promise;
 
 			var deferred = $q.defer();
@@ -68,7 +68,7 @@ angular.module('ui.load', [])
 		 * @returns {*} Promise that will be resolved once the CSS file has been loaded.
 		 */
 		this.loadCSS = function (href) {
-			href = href + '?_v=' + APP_VERSION;
+			href = href + '?_v=' + (new Date()).getTime();
 			if(loaded[href]) return loaded[href].promise;
 			var deferred = $q.defer();
 			var style = $document[0].createElement('link');
