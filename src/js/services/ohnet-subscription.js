@@ -154,6 +154,13 @@ angular.module('ohnet').service('ohnetSubscription',function ($document, $q, $ti
 		if(angular.isUndefined(isOffline)){
 			return _deviceOffline;
 		}
+		// 如果本次设置的是掉线状态，且之前不是掉线状态，那么本次显示
+        if (isOffline === true && !_isOffline) {
+            // 获取当前udn
+            var _info = _that.info();
+            // 发送掉线通知
+            ohnetObservable.broadcast('subscription-offline', _info ? _info.udn : '');
+        }
 		_isOffline = isOffline;
 		return _isOffline;
 	};

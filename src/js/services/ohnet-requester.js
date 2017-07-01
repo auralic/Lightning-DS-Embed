@@ -500,7 +500,6 @@ angular.module('ohnet').service('ohnetRequester', function ($q, $cacheFactory, o
 		}
 		_isOffline = isOffline;
 		if(_isOffline){
-			ohnetTip.tip('general.tip_error_title', 'general.device_offline', {udn : (ohnetSubscription.info() ? ohnetSubscription.info().udn : '')});
 			_startCheckIP();
 		}
 		// 如果是在线状态，则设置 pending 为 false

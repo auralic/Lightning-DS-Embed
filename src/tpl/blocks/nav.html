@@ -5,7 +5,7 @@
   </li>
   <li ng-repeat="d in devices" ui-sref-active="active">
     <a href class="auto" ui-sref="{{d.uri}}" title="{{translate(d.name) | translate}}">
-      <i class="icon text-primary-dker fa fa-gears"></i>
+      <i class="icon text-primary-dker aicon-{{getServicesIcon(d.name)}}"></i>
       <span class="font-bold">{{translate(d.name) | translate}}</span>
     </a>
   </li>

@@ -10,7 +10,7 @@
 		</div>
 	</div>
 	<div class="ohnet-text-editor" style="display:none;">
-		<label class="{{leftClass}} control-label pull-left"><input type="{{source.value.display_name._password==1 ? 'password' : 'text'}}" class="form-control" name="{{source._id}}" ng-model="textInput" ng-class="{'error' : isError}"/></label>
+		<label class="{{leftClass}} control-label pull-left"><input type="{{source.value.display_name._password==1 ? 'password' : 'text'}}" class="form-control" name="{{source._id}}" placeholder="{{translate(source.key) | translate}}" ng-model="textInput" ng-class="{'error' : isError}"/></label>
 		<div class="{{rightClass}}">
 			<div class="pull-right">
 				<button class="btn btn-default" ng-click="_cancel()">{{ generalTranslate('cancel') | translate}}</button>

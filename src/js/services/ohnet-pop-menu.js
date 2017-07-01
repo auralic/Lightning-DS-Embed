@@ -30,6 +30,20 @@ angular.module('ohnet').service('ohnetPopMenu', ['$document', '$q', '$timeout', 
 			// 移除该节点和其子节点
 			_that.remove(id);
 		});
+        element.find('.modal').on('show.bs.modal', function () {
+            // 向下发送
+            scope.$broadcast('parent.modal-show', {
+                id : scope.source._id,
+                type : scope.source._type
+            });
+		});
+        element.find('.modal').on('hidden.bs.modal', function () {
+            // 向下发送
+            scope.$broadcast('parent.modal-hide', {
+                id : scope.source._id,
+                type : scope.source._type
+            });
+        });
 	};
 
 

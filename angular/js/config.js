@@ -2,8 +2,16 @@
 var _appConfig = {
     version : '1.1beta',
     name : 'Lightning DS',
-    langs : {en:'English', de:'Deutsch', zh_CN:'中文（简体）', zh_TW : '中文（繁体）'},
-    dfLang : 'en'
+    langs : {en:'English', fr : 'French', de:'Deutsch', zh_CN:'中文（简体）', zh_TW : '中文（繁体）'},
+    dfLang : 'en',
+    devicesIcon:{
+        'ServerConfig' : 'library',
+        'WebRendererConfig' : 'streamer',
+        'WebProcessorConfig' : 'processor',
+        'WebDeviceConfig':'hardware',
+        'WebDACConfig' : 'dac',
+        'WebClockConfig' :'clock'
+    }
 },
 
 _ohnetProxy = {
@@ -35,7 +43,7 @@ angular.module('app')
     // Those urls are [prefix][langKey][suffix].
     $translateProvider.useStaticFilesLoader({
       prefix: 'l10n/',
-      suffix: '.js?_v=' + _appConfig.version
+      suffix: '.js?_v=' + (new Date()).getTime()
     });
     // Tell the module what language to use by default
     $translateProvider.preferredLanguage(_appConfig.dfLang);

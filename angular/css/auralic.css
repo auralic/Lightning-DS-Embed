@@ -179,6 +179,8 @@ input.error:focus {
 }
 
 #device-service-list-id li a .icon {
+  top: 3px;
+  font-size: 18px;
   color: #869fb1;
 }
 

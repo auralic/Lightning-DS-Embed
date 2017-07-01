@@ -1,4 +1,4 @@
-app.controller('UiConfigCtrl', function($scope, $compile, $log, ohnetRequester, $q, $stateParams, ohnetObservable, ohnetNodes, $http, $location, $rootScope) {
+app.controller('UiConfigCtrl', function($scope, $compile, $log, ohnetRequester, $q, $stateParams, ohnetObservable, ohnetNodes, $http, $location, $rootScope, ohnetUtils, ohnetTip, ohnetSubscription) {
     var element = angular.element('#ui-config-container-id');
     // 初始化一个延迟对象
     var backDef = $q.defer();
@@ -17,6 +17,13 @@ app.controller('UiConfigCtrl', function($scope, $compile, $log, ohnetRequester, 
             _selected();
         });
     };
+    // 订阅掉线通知
+    ohnetObservable.add('subscription-offline', function(){
+        ohnetTip.tip('general.tip_error_title', 'general.device_offline', {udn : (ohnetSubscription.info() ? ohnetSubscription.info().udn : '')});
+        // 如果掉线，则清空右侧内容区域
+        element.html('');
+        $('#ui-comment-container-id').html('');
+    });
     ohnetObservable.remove('selected-device');
     ohnetObservable.add('selected-device', function(){
         window.setTimeout(function(){
@@ -34,6 +41,20 @@ app.controller('UiConfigCtrl', function($scope, $compile, $log, ohnetRequester, 
             //$('#ui-comment-container-id').fadeIn(500);
         }, 100);
     });
+    var _body = $('body');
+    // 检查是否移动设备，如果是，则绑定 scroll to 事件
+    if (ohnetUtils.isMobileDevice()) {
+        $('#ui-config-container-id').on('click', '.comment-icon', function (e){
+            e.stopImmediatePropagation();
+            e.stopPropagation();
+            // 获取要链接的元素位置
+            var top = $('#' + $(this).attr('ui-scroll-to')).offset().top;
+            _body.finish().animate({
+                scrollTop : top > 50 ? top - 50 : top
+            }, 500);
+            return false;
+        });
+    }
     //先选中一个
     _selected();
     return backDef.promise;

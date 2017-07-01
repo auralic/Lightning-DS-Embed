@@ -18,6 +18,12 @@ app.controller('UiNavContrl',function($scope, ohnetParser, $http, $compile, $log
             _navDef.resolve();
         }
     });
+
+    // 根据 service name 获取其图标icon
+    $scope.getServicesIcon = function (serviceName) {
+        return APP_CONFIG.devicesIcon[serviceName];
+    }
+
     // 添加一个 refresh 监听
     ohnetObservable.add('device-refresh', function(){
         ohnetUtils.apply($scope, function(){
@@ -61,11 +67,6 @@ app.controller('UiNavContrl',function($scope, ohnetParser, $http, $compile, $log
         });
     };
     // 设置时间
-    
-    ohnetObservable.add('subscription-close', function(){
-        $log.debug('sub is close');
-    });
-    // 设置时间
     var _setTime = ohnetObservable.add('subscription-start', function(){
         window.setTimeout(function(){
             ohnetRequester.setTime();
@@ -73,6 +74,7 @@ app.controller('UiNavContrl',function($scope, ohnetParser, $http, $compile, $log
         // 设置完成后删除
         ohnetObservable.remove('subscription-start', _setTime);
     });
+
     return df2.promise;
 });
 app.filter(  

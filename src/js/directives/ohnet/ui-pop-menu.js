@@ -16,7 +16,7 @@ angular.module('ohnet').directive('ohnetUiPopMenu', ['$compile', '$templateCache
         return _html.join('');
     },
     _getNodeHtml : function(node, express, module, pid){
-       return '<div data-ohnet-ui-' + node._type.replace(/_/g, '-') + ' data-compound="_getValues" id="' + node._id + '" data-pid="' + pid + '" data-ui-type="' + node._type + '" data-node-type="embed" data-source="' + express + '" data-module="' + module + '"></div>';
+       return '<div data-ohnet-ui-' + node._type.replace(/_/g, '-') + ' data-compound="_getValues" id="' + node._id + '" data-pid="' + pid + '" data-ui-prop="true" data-ui-type="' + node._type + '" data-node-type="embed" data-source="' + express + '" data-module="' + module + '"></div>';
     },
     _putChild : function(_childs, id, value, type){
       var _exist = false;
