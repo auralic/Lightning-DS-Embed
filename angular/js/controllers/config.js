@@ -79,15 +79,34 @@ app.controller('UiCommentCtrl', function($scope, $compile, $log, $q, ohnetObserv
         if(angular.isUndefined(o)){
             return '';
         }
+       // console.log('comment id is %s', id);
         // 插入当前级别内容，如果备注存在，则插入备注
         if(o.scope && o.scope.source && o.scope.source._comment != '0'){
             html.push('<div class="comment-' + level + '" id="comment-' + o.id + '-id" translate="comment.' + o.id + '">' + o.id + '</div>');
         }
         // 处理子节点
-        if(angular.isArray(o.children)){
+        if(angular.isArray(o.children) && o.children.length > 0){
+            // 子元素排序
+            o.children = _sort(o.children);
             angular.forEach(o.children, function(c){
                 _render(c, level + 1, html);
             });
         }
     };
+    // 排序
+    var _sort = function(ids){
+        // 获取原始数据对象，以便于排序
+        var list = ohnetNodes.gets(ids);
+        if (list[0].sequence == -1 || list[0].sequence === undefined) {
+            return ids;
+        }
+        list.sort(function (a, b) {
+            return a.sequence - b.sequence;
+        });
+        var _rs = [];
+        angular.forEach(list, function (o) {
+            _rs.push(o.id);
+        });
+        return _rs;
+    }
 });

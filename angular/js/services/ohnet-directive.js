@@ -45,7 +45,7 @@ angular.module('ohnet').service('ohnetDirective', function ($q, ohnetUtils, ohne
 		var _that = this;
 		obj = obj || {};
 		// 添加通用方法
-		_dist.link = function(scope, element, attrs){
+    _dist.link = function(scope, element, attrs){
       // 添加  translateCode 函数
       scope.translate = function(o){
           return ohnetUtils.getTranslateCode(scope.module, o);
@@ -177,7 +177,8 @@ angular.module('ohnet').service('ohnetDirective', function ($q, ohnetUtils, ohne
 
         // 添加到nodes列表中
         if(_addNode !== false){
-          ohnetNodes.add(scope.source._id, attrs.pid, scope);
+          if(attrs.pid == 'tool_config'){console.log('%s put in %s', scope.source._id, attrs.pid);}
+          ohnetNodes.add(scope.source._id, attrs.pid, scope, attrs.uiSequence);
         }
         // 这里添加 condition 支持
         if(!angular.isUndefined(scope.source.attached_node)){

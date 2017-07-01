@@ -15,13 +15,15 @@ angular.module('ohnet').service('ohnetNodes', function ($log, $rootScope, ohnetU
 	* 添加一个 node
 	* @param {string} 当前的node id
 	* @param {string} pid 当前 node 对应的pid
-	* @param {object} scop node 对应的scope，用于移除当前 node id 
+	* @param {object} scop node 对应的scope，用于移除当前 node id
+	 * @param {string} sequence 排序，序号
 	* @return {boolean} 是否添加成功
 	*/
-	this.add = function(id, pid, scope){
+	this.add = function(id, pid, scope, sequence){
 		if(angular.isUndefined(id)){
 			return;
 		}
+        sequence = sequence !== undefined ? sequence : -1;
 		// 如果 pid 是未定义，则认为是 root 
 		pid = angular.isUndefined(pid) ? _rootName : pid;
 		// 获取 父元素 的 children 列表
@@ -35,8 +37,10 @@ angular.module('ohnet').service('ohnetNodes', function ($log, $rootScope, ohnetU
 		_nodesCached.push({
 			id : id,
 			scope : scope,
+            sequence : sequence,
 			children : []
 		});
+
 		// 添加 scope destory 监听
 		var _that = this;
 		scope.$on('$destroy', function(){
@@ -114,11 +118,11 @@ angular.module('ohnet').service('ohnetNodes', function ($log, $rootScope, ohnetU
 	* @return {array} 子元素列表
 	*/
 	this.children = function(id){
-		var _t = _getById(id);
-		if(angular.isUndefined(_t)){
+		var _t = _getByIds(id);
+		if(_t.length == 0){
 			return undefined;
 		}
-		return _t.children;
+		return _t[0].children;
 	};
 
 
@@ -316,7 +320,15 @@ angular.module('ohnet').service('ohnetNodes', function ($log, $rootScope, ohnetU
 	* @return {object} 返回id对应的数据{}
 	*/
 	this.get = function(id){
-		return _getById(id);
+		return _getByIds(id)[0];
+	};
+
+    /**
+	 * 获取ids列表元素
+     * @param ids
+     */
+	this.gets = function (ids) {
+		return _getByIds(ids);
 	};
 
 	/**
@@ -471,15 +483,23 @@ angular.module('ohnet').service('ohnetNodes', function ($log, $rootScope, ohnetU
 	* @param {string} id 节点编号
 	* @return 节点
 	*/
-	function _getById(id){
-		var _t;
-		for(var i = 0;i < _nodesCached.length;i ++){
-			_t = _nodesCached[i];
-			if(_t.id == id){
-				return _t;
-			}
+	function _getByIds(id){
+
+		if (id.constructor !== Array) {
+			id = [id];
 		}
-		return  undefined;
+		var _rs = [];
+        var _t;
+		for(var j = 0;j < id.length;j ++) {
+            for (var i = 0; i < _nodesCached.length; i++) {
+                _t = _nodesCached[i];
+                if (_t.id == id[j]) {
+                	_rs.push(_t);
+                    break;
+                }
+            }
+        }
+		return  _rs;
 	};
 	
 });

@@ -11,12 +11,12 @@ angular.module('ohnet').directive('ohnetUiPopMenu', ['$compile', '$templateCache
           if(i > 0){
             _html.push('<div class="line line-dashed b-b m-n pull-in"></div>');
           }
-           _html.push(_utils._getNodeHtml(o, 'cpsource.node' + (angular.isUndefined(i) ? '' : '[' + i + ']'), module, pid));
+           _html.push(_utils._getNodeHtml(o, 'cpsource.node' + (angular.isUndefined(i) ? '' : '[' + i + ']'), module, pid, i));
         });
         return _html.join('');
     },
-    _getNodeHtml : function(node, express, module, pid){
-       return '<div data-ohnet-ui-' + node._type.replace(/_/g, '-') + ' data-compound="_getValues" id="' + node._id + '" data-pid="' + pid + '" data-ui-prop="true" data-ui-type="' + node._type + '" data-node-type="embed" data-source="' + express + '" data-module="' + module + '"></div>';
+    _getNodeHtml : function(node, express, module, pid, i){
+       return '<div data-ohnet-ui-' + node._type.replace(/_/g, '-') + ' data-ui-sequence="' + i + '" data-compound="_getValues" id="' + node._id + '" data-pid="' + pid + '" data-ui-prop="true" data-ui-type="' + node._type + '" data-node-type="embed" data-source="' + express + '" data-module="' + module + '"></div>';
     },
     _putChild : function(_childs, id, value, type){
       var _exist = false;

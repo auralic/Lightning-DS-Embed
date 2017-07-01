@@ -18,7 +18,7 @@ angular.module('ohnet').directive('ohnetUiDispatcher', function ($compile, $temp
             if(angular.isUndefined(obj)){
               return;
             }
-             _html.push(_utils._getNodeHtml(obj, 'source.root.group' + ohnetUtils.getExpressIndex(i) + '.node' + ohnetUtils.getExpressIndex(k), module, o._id));
+             _html.push(_utils._getNodeHtml(obj, 'source.root.group' + ohnetUtils.getExpressIndex(i) + '.node' + ohnetUtils.getExpressIndex(k), module, o._id, k));
              // 添加space
             _html.push(ohnetUtils.getSpaceHtmlByNodeId(o.space, obj._id));
           });
@@ -84,7 +84,7 @@ angular.module('ohnet').directive('ohnetUiDispatcher', function ($compile, $temp
           _html.push(ohnetUtils.getSpaceHtmlByNodeId(_node.node.space));
           // 添加root 节点 
           ohnetUtils.forEach(_node.node.node, function(obj, k){
-            _html.push(_utils._getNodeHtml(obj, 'source.root.group' + ohnetUtils.getExpressIndex(_node.index) + '.node' + ohnetUtils.getExpressIndex(k), scope.module, id));
+            _html.push(_utils._getNodeHtml(obj, 'source.root.group' + ohnetUtils.getExpressIndex(_node.index) + '.node' + ohnetUtils.getExpressIndex(k), scope.module, id, k));
              // 添加space
             _html.push(ohnetUtils.getSpaceHtmlByNodeId(_node.node.space, obj._id));
           });
@@ -104,9 +104,10 @@ angular.module('ohnet').directive('ohnetUiDispatcher', function ($compile, $temp
       $compile(element.find(expre).contents())(scope);
     },
 
-    _getNodeHtml : function(node, express, module, pid){
+    _getNodeHtml : function(node, express, module, pid, index){
       try{
-       return '<div class="ohnet-ui-' + node._type.replace(/_/g, '-') + '-div" data-ohnet-ui-' + node._type.replace(/_/g, '-') + ' id="' + node._id + '" data-pid="' + pid + '" data-ui-type="' + node._type + '" data-node-type="regular" data-source="' + express + '" data-module="' + module + '"></div><div class="line line-dashed b-b m-n pull-in"></div>';
+          if(pid == 'tool_config'){console.log('aaa, %s put in %s', node._id, pid);}
+       return '<div class="ohnet-ui-' + node._type.replace(/_/g, '-') + '-div" data-ui-sequence="' + index + '" data-ohnet-ui-' + node._type.replace(/_/g, '-') + ' id="' + node._id + '" data-pid="' + pid + '" data-ui-type="' + node._type + '" data-node-type="regular" data-source="' + express + '" data-module="' + module + '"></div><div class="line line-dashed b-b m-n pull-in"></div>';
      }catch(e){
         return '';
      }

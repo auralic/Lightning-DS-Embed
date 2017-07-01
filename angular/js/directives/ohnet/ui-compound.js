@@ -7,7 +7,7 @@ angular.module('ohnet').directive('ohnetUiCompound', function ($compile, $templa
         var _html = [];
         var _t;
         ohnetUtils.forEach(nodes, function(o, i){
-           _html.push(_utils._getNodeHtml(o, 'cpsource.node' + ohnetUtils.getExpressIndex(i) , module, pid));
+           _html.push(_utils._getNodeHtml(o, 'cpsource.node' + ohnetUtils.getExpressIndex(i) , module, pid, i));
            // 添加一个 线
            _html.push('<div class="line line-dashed b-b m-n pull-in"></div>');
             // 添加space
@@ -15,8 +15,8 @@ angular.module('ohnet').directive('ohnetUiCompound', function ($compile, $templa
         });
         return _html.join('');
     },
-    _getNodeHtml : function(node, express, module, pid){
-       return '<div data-ohnet-ui-' + node._type.replace(/_/g, '-') + ' data-compound="_getValues" id="' + node._id + '" data-pid="' + pid + '" data-ui-type="' + node._type + '" data-node-type="embed" data-source="' + express + '" data-module="' + module + '"></div>';
+    _getNodeHtml : function(node, express, module, pid, i){
+       return '<div data-ohnet-ui-' + node._type.replace(/_/g, '-') + ' data-compound="_getValues" id="' + node._id + '" data-pid="' + pid + '" data-ui-type="' + node._type + '" data-ui-sequence="' + i + '" data-node-type="embed" data-source="' + express + '" data-module="' + module + '"></div>';
     },
     _putChild : function(_childs, id, value, type){
       var _exist = false;
@@ -69,7 +69,7 @@ angular.module('ohnet').directive('ohnetUiCompound', function ($compile, $templa
             _html.push('<div class="ohnet-space"></div>');
           });
         }
-         _html.push(_utils._getNodeHtml(o, 'cpsource.node' + ohnetUtils.getExpressIndex(i) , scope.module, pid));
+         _html.push(_utils._getNodeHtml(o, 'cpsource.node' + ohnetUtils.getExpressIndex(i) , scope.module, pid, i));
          // 添加一个 线
          _html.push('<div class="line line-dashed b-b m-n pull-in"></div>');
          _html.push(ohnetUtils.getSpaceHtmlByNodeId(scope.source.space, o._id));
