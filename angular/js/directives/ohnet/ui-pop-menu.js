@@ -130,6 +130,8 @@ angular.module('ohnet').directive('ohnetUiPopMenu', ['$compile', '$templateCache
 
       // 获取容器
       element.find('.pop-menu-content').html(_utils._getTemplateHtml(scope.cpsource.node, attrs.module, scope.source._id));
+      // 将 element 移动到 body 下面
+        $('body').append(element);
       // 动态编译
       $compile(element.find('.pop-menu-content').contents())(scope);
 

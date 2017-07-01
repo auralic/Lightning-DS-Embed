@@ -24,6 +24,7 @@
     "grunt-contrib-copy": "^0.5.0",
     "grunt-contrib-htmlmin": "^0.3.0",
     "grunt-contrib-uglify": "^0.5.1",
+    "grunt-filerev": "^2.3.1",
     "grunt-recess": "^1.0.0",
     "grunt-swig": "^0.2.1",
     "gruntfile-gtx": "^0.3.0",
