@@ -18,7 +18,9 @@ _ohnetProxy = {
   'WebRendererConfig' : CpProxyAvOpenhomeOrgWebRendererConfig1,
   'WebDeviceConfig' : CpProxyAvOpenhomeOrgWebDeviceConfig1,
   'ServerConfig' : CpProxyAvOpenhomeOrgServerConfig1,
-  'WebProcessorConfig' : CpProxyAvOpenhomeOrgWebProcessorConfig1
+  'WebProcessorConfig' : CpProxyAvOpenhomeOrgWebProcessorConfig1,
+    'WebClockConfig':CpProxyAvOpenhomeOrgWebClockConfig1,
+    'WebDACConfig' : CpProxyAvOpenhomeOrgWebDACConfig1
 };
 
 var app =  
