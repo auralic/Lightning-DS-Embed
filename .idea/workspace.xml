@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f6853166-c7b0-4909-8d1a-09b81b205b2b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/openhome/proxy/CpAvOpenhomeOrgWebClockConfig1.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/openhome/proxy/CpAvOpenhomeOrgWebDACConfig1.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/config.js" afterPath="$PROJECT_DIR$/src/js/config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular/index.html" afterPath="$PROJECT_DIR$/angular/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular/js/app.js" afterPath="$PROJECT_DIR$/angular/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular/js/app.openhome.js" afterPath="$PROJECT_DIR$/angular/js/app.openhome.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular/js/config.js" afterPath="$PROJECT_DIR$/angular/js/config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/openhome/proxy/CpAvOpenhomeOrgWebClockConfig1.js" afterPath="$PROJECT_DIR$/libs/openhome/proxy/CpAvOpenhomeOrgWebClockConfig1.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/openhome/proxy/CpAvOpenhomeOrgWebDACConfig1.js" afterPath="$PROJECT_DIR$/libs/openhome/proxy/CpAvOpenhomeOrgWebDACConfig1.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,7 +27,7 @@
       <file leaf-file-name="ohnet-thread.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/services/ohnet-thread.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
+            <state relative-caret-position="645">
               <caret line="43" column="8" lean-forward="false" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
               <folding />
             </state>
@@ -35,7 +39,28 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
               <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="39" />
-              <folding />
+              <folding>
+                <marker date="1504582072000" expanded="true" signature="874:1094" ph="/** Subscribes the service to the subscription manager to listen for property change events ...*/" />
+                <marker date="1504582072000" expanded="true" signature="1185:1257" ph="{...}" />
+                <marker date="1504582072000" expanded="true" signature="1260:1390" ph="/** Unsubscribes the service from the subscription manager to stop listening for property change events ...*/" />
+                <marker date="1504582072000" expanded="true" signature="1463:1532" ph="{...}" />
+                <marker date="1504582072000" expanded="true" signature="1541:1701" ph="/** Adds a listener to handle &quot;Alive&quot; property change events ...*/" />
+                <marker date="1504582072000" expanded="true" signature="1796:1952" ph="{...}" />
+                <marker date="1504582072000" expanded="true" signature="1865:1948" ph="{...}" />
+                <marker date="1504582072000" expanded="true" signature="1959:2131" ph="/** Adds a listener to handle &quot;ClockConfig&quot; property change events ...*/" />
+                <marker date="1504582072000" expanded="true" signature="2232:2396" ph="{...}" />
+                <marker date="1504582072000" expanded="true" signature="2307:2392" ph="{...}" />
+                <marker date="1504582072000" expanded="true" signature="2399:2675" ph="/** A service action to GetClockConfig ...*/" />
+                <marker date="1504582072000" expanded="true" signature="2779:3217" ph="{...}" />
+                <marker date="1504582072000" expanded="true" signature="2927:3111" ph="{...}" />
+                <marker date="1504582072000" expanded="true" signature="3057:3105" ph="{...}" />
+                <marker date="1504582072000" expanded="true" signature="3142:3213" ph="{...}" />
+                <marker date="1504582072000" expanded="true" signature="3220:3546" ph="/** A service action to SetClockConfig ...*/" />
+                <marker date="1504582072000" expanded="true" signature="3663:4068" ph="{...}" />
+                <marker date="1504582072000" expanded="true" signature="3873:3962" ph="{...}" />
+                <marker date="1504582072000" expanded="true" signature="3908:3956" ph="{...}" />
+                <marker date="1504582072000" expanded="true" signature="3993:4064" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -45,7 +70,28 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
               <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="37" />
-              <folding />
+              <folding>
+                <marker date="1504582015000" expanded="true" signature="858:1078" ph="/** Subscribes the service to the subscription manager to listen for property change events ...*/" />
+                <marker date="1504582015000" expanded="true" signature="1167:1239" ph="{...}" />
+                <marker date="1504582015000" expanded="true" signature="1242:1372" ph="/** Unsubscribes the service from the subscription manager to stop listening for property change events ...*/" />
+                <marker date="1504582015000" expanded="true" signature="1443:1512" ph="{...}" />
+                <marker date="1504582015000" expanded="true" signature="1521:1681" ph="/** Adds a listener to handle &quot;Alive&quot; property change events ...*/" />
+                <marker date="1504582015000" expanded="true" signature="1774:1930" ph="{...}" />
+                <marker date="1504582015000" expanded="true" signature="1843:1926" ph="{...}" />
+                <marker date="1504582015000" expanded="true" signature="1937:2105" ph="/** Adds a listener to handle &quot;DACConfig&quot; property change events ...*/" />
+                <marker date="1504582015000" expanded="true" signature="2202:2364" ph="{...}" />
+                <marker date="1504582015000" expanded="true" signature="2275:2360" ph="{...}" />
+                <marker date="1504582015000" expanded="true" signature="2367:2639" ph="/** A service action to GetDACConfig ...*/" />
+                <marker date="1504582015000" expanded="true" signature="2739:3171" ph="{...}" />
+                <marker date="1504582015000" expanded="true" signature="2885:3065" ph="{...}" />
+                <marker date="1504582015000" expanded="true" signature="3011:3059" ph="{...}" />
+                <marker date="1504582015000" expanded="true" signature="3096:3167" ph="{...}" />
+                <marker date="1504582015000" expanded="true" signature="3174:3494" ph="/** A service action to SetDACConfig ...*/" />
+                <marker date="1504582015000" expanded="true" signature="3605:4004" ph="{...}" />
+                <marker date="1504582015000" expanded="true" signature="3809:3898" ph="{...}" />
+                <marker date="1504582015000" expanded="true" signature="3844:3892" ph="{...}" />
+                <marker date="1504582015000" expanded="true" signature="3929:4000" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -211,10 +257,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="4" />
-    <option name="y" value="23" />
-    <option name="width" value="1436" />
-    <option name="height" value="877" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -232,6 +276,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -492,7 +537,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -618,7 +662,8 @@
       <workItem from="1498891071816" duration="8333000" />
       <workItem from="1498901408053" duration="2791000" />
       <workItem from="1498961298796" duration="155000" />
-      <workItem from="1504401405863" duration="161000" />
+      <workItem from="1504401405863" duration="301000" />
+      <workItem from="1506515939634" duration="71000" />
     </task>
     <task id="LOCAL-00001" summary="先提交一个版本">
       <created>1498885639566</created>
@@ -655,20 +700,27 @@
       <option name="project" value="LOCAL" />
       <updated>1498904742245</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="添加了 CpAvOpenhomeOrgWebClockConfig1.js 和 CpAvOpenhomeOrgWebDACConfig1.js 服务">
+      <created>1504401597216</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1504401597216</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34886000" />
+    <option name="totallyTimeSpent" value="35097000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="23" width="1436" height="877" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3282532" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -697,7 +749,8 @@
     <MESSAGE value="修复了&#10;  1. iPhone上面server添加路径时候遮罩在弹出框前面，导致无法操作（和页面宽度无关，电脑上拉低宽度没事，只是iphone有这个问题）&#10;已完成&#10;&#10;  2. WiFi密码最多只能输入32位问题（应该最大128位）&#10;已完成&#10;&#10;  3. 页面要加版本号，解决cache问题&#10;已完成&#10;&#10;  4. 右侧注释顺序不对问题（找不到规律，和版本号可能也有关，附件截图）&#10;测试没有任务问题，顺序是按NODE顺序&#10;&#10;  5. 增加法语支持，语言项叫French，在English下面，多语言文件名称是fr&#10;已完成&#10;&#10;  6. 加WiFi选网络名字那个地方，刚勾选上SSID之后Next不能选，必须等几秒才能选&#10;      无法重现&#10;&#10;  7. 更换左侧设备类型图标，根据设备类型来匹配显示（需要常鹏配合修改）&#10;怎么对应&#10;&#10;  8. 如果当前停留的页面的设备掉线了，则需要刷新跳转到另外一个设备服务上，现在是左侧菜单刷没了，但是右侧内容还在，导致歧义&#10;貌似已经解决，待测试&#10;&#10;  9. 弹出框的文本框的各项默认都设置成edit状态，否则每次改都要先点edit好麻烦&#10;已完成&#10;&#10;&#10;  10. 手机版本界面注释锚点偏移问题&#10;已完成" />
     <MESSAGE value="修复了 注释排序问题，原来依赖渲染顺序，改成 node顺序" />
     <MESSAGE value="修复了 pc 锚链接问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复了 pc 锚链接问题" />
+    <MESSAGE value="添加了 CpAvOpenhomeOrgWebClockConfig1.js 和 CpAvOpenhomeOrgWebDACConfig1.js 服务" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了 CpAvOpenhomeOrgWebClockConfig1.js 和 CpAvOpenhomeOrgWebDACConfig1.js 服务" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -974,7 +1027,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
           <caret line="63" column="36" lean-forward="false" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -982,7 +1034,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -990,7 +1041,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="25" column="29" lean-forward="false" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1030,7 +1080,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/services/ohnet-thread.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
+        <state relative-caret-position="645">
           <caret line="43" column="8" lean-forward="false" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
           <folding />
         </state>
@@ -1048,7 +1098,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="39" />
-          <folding />
+          <folding>
+            <marker date="1504582072000" expanded="true" signature="874:1094" ph="/** Subscribes the service to the subscription manager to listen for property change events ...*/" />
+            <marker date="1504582072000" expanded="true" signature="1185:1257" ph="{...}" />
+            <marker date="1504582072000" expanded="true" signature="1260:1390" ph="/** Unsubscribes the service from the subscription manager to stop listening for property change events ...*/" />
+            <marker date="1504582072000" expanded="true" signature="1463:1532" ph="{...}" />
+            <marker date="1504582072000" expanded="true" signature="1541:1701" ph="/** Adds a listener to handle &quot;Alive&quot; property change events ...*/" />
+            <marker date="1504582072000" expanded="true" signature="1796:1952" ph="{...}" />
+            <marker date="1504582072000" expanded="true" signature="1865:1948" ph="{...}" />
+            <marker date="1504582072000" expanded="true" signature="1959:2131" ph="/** Adds a listener to handle &quot;ClockConfig&quot; property change events ...*/" />
+            <marker date="1504582072000" expanded="true" signature="2232:2396" ph="{...}" />
+            <marker date="1504582072000" expanded="true" signature="2307:2392" ph="{...}" />
+            <marker date="1504582072000" expanded="true" signature="2399:2675" ph="/** A service action to GetClockConfig ...*/" />
+            <marker date="1504582072000" expanded="true" signature="2779:3217" ph="{...}" />
+            <marker date="1504582072000" expanded="true" signature="2927:3111" ph="{...}" />
+            <marker date="1504582072000" expanded="true" signature="3057:3105" ph="{...}" />
+            <marker date="1504582072000" expanded="true" signature="3142:3213" ph="{...}" />
+            <marker date="1504582072000" expanded="true" signature="3220:3546" ph="/** A service action to SetClockConfig ...*/" />
+            <marker date="1504582072000" expanded="true" signature="3663:4068" ph="{...}" />
+            <marker date="1504582072000" expanded="true" signature="3873:3962" ph="{...}" />
+            <marker date="1504582072000" expanded="true" signature="3908:3956" ph="{...}" />
+            <marker date="1504582072000" expanded="true" signature="3993:4064" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1056,7 +1127,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
           <caret line="65" column="43" lean-forward="false" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1064,7 +1134,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="37" />
-          <folding />
+          <folding>
+            <marker date="1504582015000" expanded="true" signature="858:1078" ph="/** Subscribes the service to the subscription manager to listen for property change events ...*/" />
+            <marker date="1504582015000" expanded="true" signature="1167:1239" ph="{...}" />
+            <marker date="1504582015000" expanded="true" signature="1242:1372" ph="/** Unsubscribes the service from the subscription manager to stop listening for property change events ...*/" />
+            <marker date="1504582015000" expanded="true" signature="1443:1512" ph="{...}" />
+            <marker date="1504582015000" expanded="true" signature="1521:1681" ph="/** Adds a listener to handle &quot;Alive&quot; property change events ...*/" />
+            <marker date="1504582015000" expanded="true" signature="1774:1930" ph="{...}" />
+            <marker date="1504582015000" expanded="true" signature="1843:1926" ph="{...}" />
+            <marker date="1504582015000" expanded="true" signature="1937:2105" ph="/** Adds a listener to handle &quot;DACConfig&quot; property change events ...*/" />
+            <marker date="1504582015000" expanded="true" signature="2202:2364" ph="{...}" />
+            <marker date="1504582015000" expanded="true" signature="2275:2360" ph="{...}" />
+            <marker date="1504582015000" expanded="true" signature="2367:2639" ph="/** A service action to GetDACConfig ...*/" />
+            <marker date="1504582015000" expanded="true" signature="2739:3171" ph="{...}" />
+            <marker date="1504582015000" expanded="true" signature="2885:3065" ph="{...}" />
+            <marker date="1504582015000" expanded="true" signature="3011:3059" ph="{...}" />
+            <marker date="1504582015000" expanded="true" signature="3096:3167" ph="{...}" />
+            <marker date="1504582015000" expanded="true" signature="3174:3494" ph="/** A service action to SetDACConfig ...*/" />
+            <marker date="1504582015000" expanded="true" signature="3605:4004" ph="{...}" />
+            <marker date="1504582015000" expanded="true" signature="3809:3898" ph="{...}" />
+            <marker date="1504582015000" expanded="true" signature="3844:3892" ph="{...}" />
+            <marker date="1504582015000" expanded="true" signature="3929:4000" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>

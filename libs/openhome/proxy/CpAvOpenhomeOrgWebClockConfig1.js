@@ -6,9 +6,9 @@
 * @class WebClockConfig
 */
     
-var CpProxyAvOpenhomeOrgWebClockConfig1 = function(udn){ 
+var CpProxyAvOpenhomeOrgWebClockConfig1 = function(udn, host){ 
 
-    this.url = window.location.protocol + "//" + window.location.host + "/" + udn + "/av.openhome.org-WebClockConfig-1/control";  // upnp control url
+    this.url = window.location.protocol + "//" +  host + "/" + udn + "/av.openhome.org-WebClockConfig-1/control";  // upnp control url
     this.domain = "av-openhome-org";
     this.type = "WebClockConfig";
     this.version = "1";

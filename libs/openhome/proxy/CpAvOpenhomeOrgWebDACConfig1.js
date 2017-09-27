@@ -6,9 +6,9 @@
 * @class WebDACConfig
 */
     
-var CpProxyAvOpenhomeOrgWebDACConfig1 = function(udn){ 
+var CpProxyAvOpenhomeOrgWebDACConfig1 = function(udn, host){ 
 
-    this.url = window.location.protocol + "//" + window.location.host + "/" + udn + "/av.openhome.org-WebDACConfig-1/control";  // upnp control url
+    this.url = window.location.protocol + "//" +  host + "/" + udn + "/av.openhome.org-WebDACConfig-1/control";  // upnp control url
     this.domain = "av-openhome-org";
     this.type = "WebDACConfig";
     this.version = "1";
