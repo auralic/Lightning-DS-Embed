@@ -12,6 +12,11 @@ angular.module('ohnet').service('ohnetUtils',function ($q, OHNET_PROXY, $log, $t
 	// 缓存是否是移动设备
 	var _isMobileDevice;
 
+	// 事件
+	var eventListeners = {};
+
+	var eventTmplDatas  = {};
+
 	/**
 	* 获取 属性，主要处理 attr 和 elt 的情况
 	*/
@@ -263,5 +268,68 @@ angular.module('ohnet').service('ohnetUtils',function ($q, OHNET_PROXY, $log, $t
       });
       return _html.join('');
     };
+
+
+	/**
+	 * 绑定事件
+	 * @param {*} namespace 
+	 * @param {*} fn 
+	 */
+	this.$on = function(namespace, fn) {
+		console.log('%s add data bind namespace data', namespace);
+		// console.log('register is %s', namespace);
+		if (!eventListeners[namespace]){
+			eventListeners[namespace] = [];
+		}
+		eventListeners[namespace].push(fn);
+		if (eventTmplDatas[namespace]){
+			for (var i = 0;i < eventTmplDatas[namespace].length;i ++){
+				fn(eventTmplDatas[namespace][i]);
+			}
+			delete eventTmplDatas[namespace];
+		}
+	};
+
+	/**
+	 * 触发事件
+	 * @param {*} namespace 
+	 * @param {*} data 
+	 */
+	this.$fire = function (namespace, data) {
+		// 获取 事件列表
+		var list = eventListeners[namespace];
+		if (list) {
+			for (var i = 0;i < list.length;i ++) {
+				// console.log('fire is %s, id is %s', namespace, i);
+				list[i](data);
+			}
+		}else {
+			if (!eventTmplDatas[namespace]){
+				eventTmplDatas[namespace] = [];
+			}
+			eventTmplDatas[namespace].push(data);
+		}
+		console.log('%s add data %o', namespace, data);
+	};
+
+	/**
+	 * 取消事件
+	 * @param {*} namespace 
+	 * @param {*} fn 
+	 */
+	this.$off = function (namespace, fn) {
+		if (!namespace) {
+			return;
+		}
+		if (angular.isFunction(fn)) {
+			var list = eventListeners[namespace];
+			for (var i = 0;i < list.length;i ++) {
+				list.splice(i, 1);
+				break;
+			}
+		}else {
+			delete eventListeners[namespace];
+		}
+	};
 
 });

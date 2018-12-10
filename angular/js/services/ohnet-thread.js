@@ -42,7 +42,7 @@ angular.module('ohnet').service('ohnetThread', ['OHNET_PROXY','$log', function (
 	*/
 	this.getLocalIP = function(){
 		return window.location.hostname;
-		//return '192.168.1.34';
+		//return '192.168.1.74';
 	};
 
 	// 获取远程ip的地址
@@ -56,6 +56,7 @@ angular.module('ohnet').service('ohnetThread', ['OHNET_PROXY','$log', function (
 	*/
 	this.getLocalHost = function(ip){
 		//return '//' + window.location.host;
+		//return '//192.168.1.74:9998';
 		return '//' + (angular.isUndefined(ip) ? this.getLocalIP() : ip) + ':9998';
 	};
 

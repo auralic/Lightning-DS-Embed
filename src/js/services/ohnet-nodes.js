@@ -23,6 +23,7 @@ angular.module('ohnet').service('ohnetNodes', function ($log, $rootScope, ohnetU
 		if(angular.isUndefined(id)){
 			return;
 		}
+
         sequence = sequence !== undefined ? sequence : -1;
 		// 如果 pid 是未定义，则认为是 root 
 		pid = angular.isUndefined(pid) ? _rootName : pid;
@@ -153,6 +154,7 @@ angular.module('ohnet').service('ohnetNodes', function ($log, $rootScope, ohnetU
 		
 		// 逐个 refresh
 		angular.forEach(_scopes, function(o){
+			// console.log('node is change %o', o);
 			_that.refreshAll(o.id, o.id);
 		});
 		// 如果有节点变更，则通知 node change
@@ -179,6 +181,7 @@ angular.module('ohnet').service('ohnetNodes', function ($log, $rootScope, ohnetU
 		// group
 		if(!angular.isUndefined(node.root.group)){
 			ohnetUtils.forEach(node.root.group, function(o, i){
+				// console.log('o is %o', o);
 				_refreshNode(o, undefined, _scopes);
 				_updates.push({
 					id : o._id,
@@ -393,6 +396,11 @@ angular.module('ohnet').service('ohnetNodes', function ($log, $rootScope, ohnetU
 		angular.forEach(_nl, function(o, i){
 			_nlIds.push(o._id);
 		});
+		// 如果是 eq则排序一下
+		if (node._id.indexOf('eq_') != -1) {
+			_olIds.sort();
+			_nlIds.sort();
+		}
 		// 如果 id 顺序不同，也认为不一致
 		if(angular.toJson(_olIds) != angular.toJson(_nlIds)){
 			// 如果是顶级节点，则直接返回

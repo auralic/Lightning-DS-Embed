@@ -11,15 +11,27 @@ angular.module('ohnet').directive('ohnetUiGroupMenuItem', ['$compile', '$templat
         });
       };
 
+
+  
       if(scope.source && scope.source.value){
-        scope._nodes = angular.isArray(scope.source.value.node) ? scope.source.value.node : [scope.source.value.node];
+        if (angular.isArray(scope.source.value.node)){
+          scope._nodes = scope.source.value.node;
+        }else {
+          scope._nodes = [];
+          scope._nodes.push(scope.source.value.node);
+        }
       }else{
         scope._nodes = [];
       }
 
       scope.$watch('scope.source.value.node', function(nv, ov){
         if(nv != ov && scope.source && scope.source.value){
-          scope._nodes = angular.isArray(scope.source.value.node) ? scope.source.value.node : [scope.source.value.node];
+          if (angular.isArray(scope.source.value.node)){
+            scope._nodes = scope.source.value.node;
+          }else {
+            scope._nodes = [];
+            scope._nodes.push(scope.source.value.node);
+          }
         }
       });
       // 定义取值
@@ -36,6 +48,7 @@ angular.module('ohnet').directive('ohnetUiGroupMenuItem', ['$compile', '$templat
           });
 
       }
+      
       return false;
     }
   });

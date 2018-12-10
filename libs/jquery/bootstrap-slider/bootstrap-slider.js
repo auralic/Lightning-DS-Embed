@@ -37,7 +37,8 @@
 		if (this.id) {
 			this.picker[0].id = this.id;
 		}
-		if (typeof Modernizr !== 'undefined' && Modernizr.touchevents) {
+
+		if (typeof Modernizr !== 'undefined' && Modernizr.touch) {
 			this.touchCapable = true;
 		}
 

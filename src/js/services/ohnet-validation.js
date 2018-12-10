@@ -16,7 +16,7 @@ angular.module('ohnet').service('ohnetValidation', ['$log', '$translate', 'ohnet
 	* @param {object} rules 校验的规则
 	* @return {boolean} 返回结果 true 成功，false 失败
 	*/
-	this.valid = function(label, str, rules){
+	this.valid = function(label, str, rules, showTip){
 		// 如果 检查的规则不存在，则直接 返回
 		if(!angular.isObject(rules)){
 			return str;
@@ -37,8 +37,8 @@ angular.module('ohnet').service('ohnetValidation', ['$log', '$translate', 'ohnet
 				break;
 			}
 		}
-		if(!angular.isUndefined(_m)){
-			//_showTip(label, _m);
+		if(!angular.isUndefined(_m) && (showTip === undefined || showTip === true)){
+			_showTip(label, _m);
 		}
 
 		return angular.isUndefined(_m);
@@ -61,6 +61,98 @@ angular.module('ohnet').service('ohnetValidation', ['$log', '$translate', 'ohnet
 				code : _lanModule + 'min_length',
 				args : {length : length}
 			};
+		}
+	};
+
+	/**
+	 * 最小值
+	 */
+	_support['min_range'] = function(str, rule){
+		if (str && str.length > 0) {
+			var value = parseFloat(str);
+			var minRange = parseFloat(rule);
+			if(value < minRange) {
+				return {
+					code : _lanModule + 'min_range',
+					args : {rule : rule}
+				};
+			}
+		}
+		else {
+			return {
+				code : _lanModule + 'min_range',
+				args : {rule : rule}
+			};
+		}
+	};
+
+	/**
+	 * 精度检查
+	 */
+	_support['precision'] = function (str, rule){
+		if(str.length > 0 && str.indexOf('.') != -1){
+			var per = parseInt(rule);
+			// 检查进度
+			if(per == 0) {
+				if (!new RegExp('^[+-]?[0-9]+$').test(str)) {
+						return {
+							code : _lanModule + 'precision',
+							args : {precision : per}
+						};
+					}
+			}
+			else {
+				if (!new RegExp('^[+-]?[0-9]+([.][0-9]{0,' + per + '})+$').test(str)) {
+					// if(!/^[+-]?[0-9]+([.][0-9]{0,2})+$/.test(str)){
+						return {
+							code : _lanModule + 'precision',
+							args : {precision : per}
+						};
+					}
+			}
+			
+		}
+	};
+
+	/**
+	 * 最大值
+	 */
+	_support['max_range'] = function(str, rule) {
+		if (str && str.length > 0) {
+			var value = parseFloat(str);
+			var maxRange = parseFloat(rule);
+			if(value > maxRange) {
+				return {
+					code : _lanModule + 'max_range',
+					args : {rule : rule}
+				};
+			}
+		}
+	};
+
+	/**
+	 * 数字区间	-- 暂时不用
+	 */
+	_support['range_number'] = function(str, rule) {
+		if (str && str.length > 0) {
+			var s = rule.split('-');
+			var start =  parseFloat(s[0]);
+			var value = parseFloat(str);
+			if (value < start) {
+				return {
+					code : _lanModule + 'range_number',
+					args : {rule : rule}
+				};
+			}
+			if (s[1]) {
+				var end = parseFloat(s[1]);
+				if (value > end) {
+					return {
+						code : _lanModule + 'range_number',
+						args : {rule : rule}
+					};
+				}
+			}
 		}
 	};
 
@@ -108,6 +200,15 @@ angular.module('ohnet').service('ohnetValidation', ['$log', '$translate', 'ohnet
 		if(!/^(((1?[1-9]?|10|2[0-4])\d|25[0-5])($|\.(?!$))){4}$/.test(str)){
 			return {
 				code : _lanModule + 'text.ip-address',
+				args : {}
+			};
+		}
+	};
+	_support['text_rule']['number'] = function(str){
+		// if(!/^[0-9.]*$/.test(str)){
+		if(!/^[+-]?([0-9]*[.])?[0-9]+$/.test(str)){
+			return {
+				code : _lanModule + 'text.number',
 				args : {}
 			};
 		}

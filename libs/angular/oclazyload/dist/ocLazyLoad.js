@@ -415,6 +415,7 @@
               deferred = $q.defer(),
               moduleName,
               errText;
+
             if(angular.isUndefined(params)) {
               params = {};
             }

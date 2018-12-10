@@ -13,7 +13,8 @@ input.error:focus {
 
 .form-group {
   min-height: 34px;
-  margin-bottom: 7px;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 .form-group div {
@@ -80,10 +81,6 @@ input.error:focus {
 
 .app-content-full {
   bottom: 0;
-}
-
-.btn {
-  transition: all .5s;
 }
 
 .pl {
@@ -192,7 +189,8 @@ input.error:focus {
 /* form style */
 
 .form-horizontal.form-sm .form-group {
-  margin-bottom: 7px;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 /*  balance slider style */
@@ -427,4 +425,8 @@ input.error:focus {
   position: fixed !important;
   z-index: 2000 !important;
   -webkit-transform: translateZ(2000);
+}
+
+.ohnet-tip.modal {
+  z-index: 2100;
 }

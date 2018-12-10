@@ -19392,18 +19392,11 @@ function $TemplateRequestProvider() {
    *
    * @property {number} totalPendingRequests total amount of pending template requests being downloaded.
    */
-  this.$get = ['$templateCache', '$http', '$q', '$sce', 'APP_VERSION', function($templateCache, $http, $q, $sce, APP_VERSION) {
+  this.$get = ['$templateCache', '$http', '$q', '$sce', function($templateCache, $http, $q, $sce) {
 
     function handleRequestFn(tpl, ignoreRequestError) {
       handleRequestFn.totalPendingRequests++;
-      // ---- byte shifenghu ，添加 了 version support
-      if(/^tpl/.test(tpl) && isString(APP_VERSION) && APP_VERSION.length > 0){
-        if(tpl.indexOf('?') == -1){
-          tpl = tpl + '?_v=' + APP_VERSION;
-        }else{
-          tpl = tpl + '&_v=' + APP_VERSION;
-        }
-      }
+
       // We consider the template cache holds only trusted templates, so
       // there's no need to go through whitelisting again for keys that already
       // are included in there. This also makes Angular accept any script
@@ -19422,6 +19415,7 @@ function $TemplateRequestProvider() {
       } else if (transformResponse === defaultHttpResponseTransform) {
         transformResponse = null;
       }
+
       return $http.get(tpl, extend({
           cache: $templateCache,
           transformResponse: transformResponse

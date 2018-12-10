@@ -75,7 +75,7 @@ angular.module('ohnet').service('ohnetDirective', function ($q, ohnetUtils, ohne
       scope.$watch('source', function(nv ,ov){
         if(angular.isUndefined(nv) || nv._id != ov._id){
           // 移除当前元素
-          element.remove();
+          //element.remove();
         }
       });
       element.on('$destroy', function () {
@@ -90,6 +90,9 @@ angular.module('ohnet').service('ohnetDirective', function ($q, ohnetUtils, ohne
       scope._actionNode = function(){
         if(angular.isFunction(_opts.compound)){
           return '<node type="' + attrs.uiType + '" id="' + attrs.id + '"><value>' + _opts.compound() + '</value></node>';
+        }
+        if(angular.isFunction(_opts.getValue)){
+          return '<node type="' + attrs.uiType + '" id="' + attrs.id + '"><value>' + _opts.getValue() + '</value></node>';
         }
         return '';
       };
@@ -116,8 +119,8 @@ angular.module('ohnet').service('ohnetDirective', function ($q, ohnetUtils, ohne
                  });
               });
             },
-            valid : function(lan, rules, value){ // 这个是 valid 函数
-              return ohnetValidation.valid(ohnetUtils.getTranslateCode(scope.module, lan), value, rules);
+            valid : function(lan, rules, value, showTip){ // 这个是 valid 函数
+              return ohnetValidation.valid(ohnetUtils.getTranslateCode(scope.module, lan), value, rules, showTip);
             },
             change : function(nv, ov, isUser){ // 数据变更导致的回调
                 if(nv != ov){
@@ -135,14 +138,26 @@ angular.module('ohnet').service('ohnetDirective', function ($q, ohnetUtils, ohne
                       id : scope.source._id,
                       type : scope.source._type
                     });
+                    if (scope.source._relation_node) {
+                      ohnetUtils.$fire('relation.' + scope.source._relation_node , {
+                        newVal : nv,
+                        oldVal : ov,
+                        source : scope.source,
+                        isUser : true,
+                        compoundSource : scope.source
+                      });
+                    }
                   }
                   // 向上发送
                   scope.$emit('child.change', {
                     newVal : nv,
                     oldVal : ov,
                     id : scope.source._id,
-                    type : scope.source._type
+                    type : scope.source._type,
+                    scope: scope,
+                    isUser: true
                   });
+                  
                   // 设置，如果是用户设置，则出发设置请求
                   if(isUser && (attrs.nodeType == 'regular' || _opts.compound == false)){
                       ohnetThread.asynch(function(){
@@ -152,7 +167,9 @@ angular.module('ohnet').service('ohnetDirective', function ($q, ohnetUtils, ohne
                 }
             }
           };
-    			_addNode = obj.link(_opts);
+          _addNode = obj.link(_opts);
+          
+        
           // 如果不是 复合类型，则默认发送一次change
           // 发送一次，延迟发送
           if(_opts.compound != angular.noop && angular.isFunction(_opts.compound)){
@@ -169,31 +186,46 @@ angular.module('ohnet').service('ohnetDirective', function ($q, ohnetUtils, ohne
                   newVal : _opts.compound(),
                   oldVal : undefined,
                   id : scope.source._id,
-                  type : scope.source._type
+                  type : scope.source._type,
+                  scope: scope
                 });
-            }, 1);
-         }
+            }, 500);
+            ohnetUtils.$fire('relation.' + scope.source._relation_node , {
+              newVal : _opts.compound(),
+              oldVal : undefined,
+              source : scope.source,
+              compoundSource : scope.source
+            });
+         }else {
+          if (scope.source._relation_node && angular.isFunction(_opts.getValue)) {
+            ohnetUtils.$fire('relation.' + scope.source._relation_node , {
+              newVal : _opts.getValue(),
+              oldVal : undefined,
+              source : scope.source,
+              compoundSource : scope.source
+            });
+            }
+            }
     		}
 
         // 添加到nodes列表中
         if(_addNode !== false){
-          if(attrs.pid == 'tool_config'){console.log('%s put in %s', scope.source._id, attrs.pid);}
           ohnetNodes.add(scope.source._id, attrs.pid, scope, attrs.uiSequence);
         }
-        // 这里添加 condition 支持
-        if(!angular.isUndefined(scope.source.attached_node)){
-          var _html = ['<div class="ohnet-condtion-content">'];
-          var _exp;
-          ohnetUtils.forEach(scope.source.attached_node, function(o, i){
-            _exp = 'source.attached_node' + (angular.isUndefined(i) ? '' : '[' + i + ']');
-            _html.push('<div data-ohnet-ui-condition class="ohnet-condition" data-condition="_condition" data-ui-type="condition" data-pid="' + attrs.pid + '" data-source="' + _exp + '" data-node-type="' + attrs.nodeType + '" data-module="' + attrs.module + '"></div>');
-          });
-          _html.push('</div>');
-          element.append(_html.join(''));
-          // 动态编译
-          $compile(element.children('.ohnet-condtion-content'))(scope);
-          
-        }
+          // 这里添加 condition 支持
+          if(!angular.isUndefined(scope.source.attached_node)){
+            var _html = ['<div class="ohnet-condtion-content">'];
+            var _exp;
+            ohnetUtils.forEach(scope.source.attached_node, function(o, i){
+              _exp = 'source.attached_node' + (angular.isUndefined(i) ? '' : '[' + i + ']');
+              _html.push('<div data-ohnet-ui-condition class="ohnet-condition" data-condition="_condition" data-ui-type="condition" data-pid="' + attrs.pid + '" data-source="' + _exp + '" data-node-type="' + attrs.nodeType + '" data-module="' + attrs.module + '"></div>');
+            });
+            _html.push('</div>');
+            element.append(_html.join(''));
+            // 动态编译
+            $compile(element.children('.ohnet-condtion-content'))(scope);
+            
+          }
 
 
     		_that.animate(element);

@@ -9,7 +9,7 @@ angular.module('ohnet').directive('ohnetUiDispatcher', function ($compile, $temp
         _html.push(ohnetUtils.getSpaceHtmlByNodeId(source.root.space));
         // 正常 group 节点
         ohnetUtils.forEach(_groups, function(o, i){
-          _html.push('<div class="form-horizontal panel panel-default ohnet-group" id="' + o._id + '">');
+          _html.push('<div class="form-horizontal panel panel-default ohnet-group" id="' + o._id + '" data-index="' + i + '">');
           _html.push('<div class="panel-heading">' + ohnetUtils.getTranslateExp(module, o) + ohnetUtils.renderComment(o) +  _utils._groupMenu(o, i, module) + '</div>');
           _html.push('<div class="panel-body">');
           _html.push(ohnetUtils.getSpaceHtmlByNodeId(o.space));
@@ -78,7 +78,7 @@ angular.module('ohnet').directive('ohnetUiDispatcher', function ($compile, $temp
 
       switch(_node.type){
         case 'pop_menu':
-          
+
           break;
         default:
           _html.push(ohnetUtils.getSpaceHtmlByNodeId(_node.node.space));
@@ -88,6 +88,10 @@ angular.module('ohnet').directive('ohnetUiDispatcher', function ($compile, $temp
              // 添加space
             _html.push(ohnetUtils.getSpaceHtmlByNodeId(_node.node.space, obj._id));
           });
+          // 殊殊理理 menu 
+          if (_node.node.menu && _node.node.menu.node) {
+            _utils._recomplieGoupMenu(scope, _node.node, _node.node._id, element, scope.module);
+          }
           _expre = '#' + id + ' .panel-body';
       }
       if(angular.isUndefined(_expre)){
@@ -95,6 +99,11 @@ angular.module('ohnet').directive('ohnetUiDispatcher', function ($compile, $temp
       }
       // 编译
       _utils._recompile(scope, _expre, _html.join(''), element);
+    },
+    _recomplieGoupMenu : function (scope, node, id, element, module) {
+      var index = $('#' + id ).attr('data-index');
+      var menu = '<div>' + ohnetUtils.getTranslateExp(module, node) + ohnetUtils.renderComment(node) +  _utils._groupMenu(node, parseInt(index), module) + '</div>';
+      _utils._recompile(scope, '#' + id + ' .panel-heading', menu, element);
     },
     // 重新编译
     _recompile : function(scope, expre, html, element){
@@ -106,7 +115,6 @@ angular.module('ohnet').directive('ohnetUiDispatcher', function ($compile, $temp
 
     _getNodeHtml : function(node, express, module, pid, index){
       try{
-          if(pid == 'tool_config'){console.log('aaa, %s put in %s', node._id, pid);}
        return '<div class="ohnet-ui-' + node._type.replace(/_/g, '-') + '-div" data-ui-sequence="' + index + '" data-ohnet-ui-' + node._type.replace(/_/g, '-') + ' id="' + node._id + '" data-pid="' + pid + '" data-ui-type="' + node._type + '" data-node-type="regular" data-source="' + express + '" data-module="' + module + '"></div><div class="line line-dashed b-b m-n pull-in"></div>';
      }catch(e){
         return '';

@@ -79,6 +79,23 @@ angular.module('ohnet').directive('ohnetUiCompound', function ($compile, $templa
       element.find('.panel-body .compound-contaner').html(_html.join(''));
       // 3、动态编译
       $compile(element.find(' .panel-body .compound-contaner').contents())(scope);
+    },
+    relations : {
+       list : [],
+       clear : function (){
+         this.list = [];
+       },
+       add : function (obj) {
+          this.list.push(obj);
+       },
+       each : function (fn,target){
+         for (var i = 0;i < this.list.length;i ++) {
+           fn(this.list[i]);
+         }
+       },
+       isEmpty : function (){
+          return this.list.length == 0;
+       }
     }
   };
 
@@ -139,6 +156,17 @@ angular.module('ohnet').directive('ohnetUiCompound', function ($compile, $templa
         window.setTimeout(function(){
           _$panel.find('> .panel-heading').trigger('click');
         }, 1);
+	if (relationsUtils.isEmpty()){
+	  return ;
+	}
+        relationsUtils.each(function (obj){
+          // 切换old 和 value
+          var oldV = obj.oldVal;
+          obj.oldVal = obj.newVal;
+          obj.newVal = oldV;
+          ohnetUtils.$fire('relation.' + scope.source._relation_node , obj);
+        });
+        relationsUtils.clear();
       };
 
       // 保存
@@ -152,6 +180,7 @@ angular.module('ohnet').directive('ohnetUiCompound', function ($compile, $templa
         window.setTimeout(function(){
           _$panel.find('> .panel-heading').trigger('click');
         }, 1);
+        relationsUtils.clear();
       };
       // 定义获取值得 value 函数
       scope._getValues = function(fn){
@@ -166,6 +195,19 @@ angular.module('ohnet').directive('ohnetUiCompound', function ($compile, $templa
       scope.$on('child.change', function(event, data){
         if(data.id != scope.source._id){
           _utils._putChild(_childs, data.id, data.newVal, data.type);  
+        }
+        // 处理 relation 关系事件
+        if (scope.source._relation_node) {
+          var fireObject = {
+            newVal : data.newVal,
+            oldVal : data.oldVal,
+            source : data.scope.source,
+            compoundSource : scope.source
+          };
+          ohnetUtils.$fire('relation.' + scope.source._relation_node , fireObject);
+          if (data.isUser) {
+            relationsUtils.add(fireObject);
+          }
         }
       });
 
@@ -204,6 +246,24 @@ angular.module('ohnet').directive('ohnetUiCompound', function ($compile, $templa
         $log.debug('refresh override id is %o , pid is %o', id, pid);
         return false;
       };
+
+      var relationsUtils = {
+       list : [],
+       clear : function (){
+         this.list = [];
+       },
+       add : function (obj) {
+          this.list.push(obj);
+       },
+       each : function (fn,target){
+         for (var i = 0;i < this.list.length;i ++) {
+           fn(this.list[i]);
+         }
+       },
+       isEmpty : function (){
+          return this.list.length == 0;
+       }
+    };
     }
   });
 });

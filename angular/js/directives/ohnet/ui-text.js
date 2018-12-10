@@ -1,6 +1,9 @@
 angular.module('ohnet').directive('ohnetUiText', ['$compile', '$templateCache', '$log', 'ohnetDirective', 'ohnetUtils', function ($compile, $templateCache, $log, ohnetDirective, ohnetUtils) {
 
   var _getValue = function(obj){
+    if (angular.isString(obj)) {
+      return obj;
+    }
     if(angular.isUndefined(obj)){
       return '';
     }
@@ -8,7 +11,41 @@ angular.module('ohnet').directive('ohnetUiText', ['$compile', '$templateCache', 
       return '';
     }
     if(angular.isString(obj.display_name)){
-      return obj.display_name;
+      if(obj.display_name.length == 0) return obj.display_name;
+      var display_name_text = obj.display_name;
+      //如果有value_rule.text_rule == 'number'，且有value_rule.precision，会在返回值后面补0
+      if(!angular.isUndefined(obj.value_rule) && !angular.isUndefined(obj.value_rule.text_rule)
+          && (obj.value_rule.text_rule == 'number') && !angular.isUndefined(obj.value_rule.precision)) {
+        var precision_int = parseInt(obj.value_rule.precision);
+        if(precision_int == 0) return display_name_text;
+        var p = display_name_text.lastIndexOf('.');
+        //如果没有小数点
+        if (p == -1) {
+          display_name_text = display_name_text+'.';
+          for(var i=0; i<precision_int; i++) {
+            display_name_text = display_name_text+'0';
+          }
+        }
+        else {
+          var precision_len = display_name_text.substring(p+1).length;
+          //如果小数点后面没有数字
+          if(precision_len == 0) {
+            for(var i=0; i<precision_int; i++) {
+              display_name_text = display_name_text+'0';
+            }
+          }
+          else {
+            //不足的后面补0
+            if(precision_len < precision_int) {
+              for(var i=0; i<(precision_int-precision_len); i++) {
+                display_name_text = display_name_text+'0';
+              }
+            }
+          }
+        }
+      }
+
+      return display_name_text;
     }
     if(angular.isString(obj.display_name.__text)){
       return obj.display_name.__text;
@@ -67,6 +104,7 @@ angular.module('ohnet').directive('ohnetUiText', ['$compile', '$templateCache', 
       scope.textInput = _getValue(scope.source.value);
       scope.$watch('source.value.display_name', function(nv, ov){
         if(nv != ov && !angular.isUndefined(nv)){
+
           change(_getValue(nv), _getValue(ov), false);
           scope.textInput = _getValue(scope.source.value);
           scope._formatText = _formatPassword(scope.source.value);
@@ -92,7 +130,7 @@ angular.module('ohnet').directive('ohnetUiText', ['$compile', '$templateCache', 
       scope.isError = false;
       scope.$watch('textInput', function(nv, ov){
         if(nv != ov && !angular.isUndefined(nv)){
-          scope.isError = !valid(scope.source.key, scope.source.value.value_rule, nv);
+          scope.isError = !valid(scope.source.key, scope.source.value.value_rule, nv, false);
         }
       });
 
@@ -114,6 +152,9 @@ angular.module('ohnet').directive('ohnetUiText', ['$compile', '$templateCache', 
         };
       }else{
         options.compound = false;
+      }
+      options.getValue = function (){
+        return _getValue(scope.source.value);
       }
 
       // // 如果是 在 编辑面板中，且是可编辑状态，则添加一个监听事件

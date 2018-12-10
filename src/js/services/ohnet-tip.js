@@ -31,7 +31,8 @@ angular.module('ohnet').service('ohnetTip', ['$q', '$log', '$translate', '$rootS
 		}).then(function successCallback(response) {
 		    // 设置内容
 	    	_element.html(response.data);
-	    	_warningDom = _element.find('.modal');
+			_warningDom = _element.find('.modal');
+			_warningDom.addClass('ohnet-tip');
 	    	// 开始关联编译
 	    	$compile(_element.contents())(_scope);
 	    	_initing = true;
